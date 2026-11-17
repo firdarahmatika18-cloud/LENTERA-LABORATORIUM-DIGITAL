@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Misi Detektif Aliran Air – SMAN 2 Linggo Sari Baganti</title>
+<style>
+:root{--bg:#f0fbfd;--fg:#0b2a35;--card:#fff;--pri:#0e7490;--pri2:#14b8a6;--acc:#facc15;--mut:#4b6b76;--bd:#c5e6ee;--ok:#15803d;--warn:#b45309;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#07202a;--fg:#e6f6fa;--card:#0e3340;--pri:#38bdf8;--pri2:#2dd4bf;--mut:#9cc3cf;--bd:#1d4f60;--ok:#4ade80;--warn:#fbbf24}}
+:root[data-theme="dark"]{--bg:#07202a;--fg:#e6f6fa;--card:#0e3340;--pri:#38bdf8;--pri2:#2dd4bf;--mut:#9cc3cf;--bd:#1d4f60;--ok:#4ade80;--warn:#fbbf24}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:linear-gradient(120deg,#0e7490,#14b8a6);color:#fff;padding:14px 16px}
+header b{display:block;font-size:1.1rem}header small{opacity:.9}
+nav{display:flex;gap:6px;overflow-x:auto;padding:8px 10px;background:var(--card);border-bottom:1px solid var(--bd);position:sticky;top:0;z-index:5}
+nav button{flex:0 0 auto;border:1px solid var(--bd);background:var(--bg);color:var(--fg);padding:7px 11px;border-radius:99px;font-size:.85rem;cursor:pointer}
+nav button.on{background:var(--pri);color:#fff;border-color:var(--pri)}nav button.dn::after{content:" ✓";color:var(--acc)}
+#bar{height:5px;background:var(--bd)}#bar i{display:block;height:100%;width:0;background:var(--acc);transition:width .4s}
+main{max-width:860px;margin:0 auto;padding:14px}
+section{display:none}section.on{display:block}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin:12px 0}
+h2{margin:.2em 0;color:var(--pri)}h3{margin:.3em 0}
+button.b{background:var(--pri);color:#fff;border:0;padding:10px 16px;border-radius:10px;font-size:1rem;cursor:pointer;margin:4px 4px 4px 0}
+button.b.s{background:var(--bd);color:var(--fg)}button.b.y{background:var(--acc);color:#222}button:disabled{opacity:.45;cursor:not-allowed}
+input,select,textarea{width:100%;padding:9px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--fg);font:inherit}
+textarea{min-height:70px}label{display:block;font-weight:600;margin:8px 0 3px}
+.row{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.85rem}th,td{border:1px solid var(--bd);padding:5px 7px;text-align:center}th{background:var(--bg)}
+.hint{border-left:4px solid var(--acc);padding:6px 10px;margin:8px 0;background:var(--bg);border-radius:6px;font-size:.92rem}
+.rev{border-left:4px solid var(--pri2);padding:8px 12px;background:var(--bg);border-radius:6px;margin-top:8px}
+.ok{color:var(--ok)}.wr{color:var(--warn)}.mut{color:var(--mut);font-size:.88rem}
+canvas{width:100%;height:auto;background:var(--card);border:1px solid var(--bd);border-radius:10px}
+.pill{display:inline-block;background:var(--acc);color:#222;border-radius:99px;padding:2px 10px;font-size:.78rem;font-weight:700}
+.opt{display:block;padding:8px;border:1px solid var(--bd);border-radius:8px;margin:5px 0;font-weight:400;cursor:pointer}
+.opt input{width:auto;margin-right:8px}.q{white-space:pre-wrap;background:var(--bg);border-radius:6px;padding:6px 8px;margin:2px 0}.g{display:none}body.t-g .g{display:block}body.t-c .c{display:block}.c{display:none}
+@media print{nav,#bar,.nobtn,button{display:none!important}section{display:none!important}#s8{display:block!important}}
+</style></head><body class="t-g">
+<header><b>MISI DETEKTIF ALIRAN AIR</b><small>SMAN 2 Linggo Sari Baganti · Fisika Fase F · Fluida Dinamis</small><small id="as" style="display:block;opacity:.9" role="status"></small></header>
+<div id="bar"><i></i></div><nav id="nav"></nav>
+<main>
+<section id="s0"><div class="card"><h2>Temukan Rahasia Fluida Dinamis!</h2><p class="mut">Amati fenomenanya, uji dugaanmu, temukan polanya, dan buktikan konsep fisikanya.</p>
+<svg viewBox="0 0 600 90" width="100%" aria-hidden="true"><path d="M0 45 H200 L250 25 H350 L400 45 H600" fill="none" stroke="#14b8a6" stroke-width="22" stroke-linejoin="round" opacity=".55"/><path d="M0 45 H200 L250 25 H350 L400 45 H600" fill="none" stroke="#38bdf8" stroke-width="8" stroke-dasharray="14 12" stroke-linejoin="round"><animate attributeName="stroke-dashoffset" from="0" to="-52" dur="1.2s" repeatCount="indefinite"/></path><text x="10" y="82" font-size="13" fill="currentColor">🌱 kebun sekolah · selang · saluran irigasi</text></svg>
+<p>“Air mengalir melalui berbagai saluran di sekitar kita. Kadang-kadang alirannya deras, kadang lambat. Mengapa kecepatan air dapat berubah? Apakah tekanan air selalu sama? Hari ini kamu menjadi Detektif Fluida yang bertugas mengungkap rahasia di balik aliran air melalui eksperimen dan bukti ilmiah.”</p></div>
+<div class="card"><h3>Identitas Detektif</h3><div class="row"><div><label for="nm">Nama</label><input id="nm" maxlength="60"></div><div><label for="kl">Kelas</label><input id="kl" maxlength="10" placeholder="mis. XI.1"></div><div><label for="kg">Kelompok</label><input id="kg" maxlength="20"></div></div>
+<label for="jl">Jalur belajar</label><select id="jl"><option value="g">Terbimbing (petunjuk bertahap)</option><option value="m">Mandiri</option><option value="c">Tantangan (uji asumsi model ideal)</option></select>
+<p class="mut">Data pribadi hanya nama, kelas, dan kelompok. Pekerjaanmu tersimpan otomatis di browser perangkat ini, jadi bisa dilanjutkan saat halaman dibuka kembali. Unduh cadangan dari menu Laporan agar lebih aman.</p></div>
+<div id="sv0" class="hint" style="display:none">Ada laporan tersimpan di perangkat ini. <button class="b s" onclick="loadLocal();go(8)">Pulihkan dan Lihat Laporan</button></div><div class="card"><h3>Tujuan Belajarmu</h3><ul><li>Menjelaskan hubungan luas penampang, kecepatan, dan debit dari data.</li><li>Menemukan pola antara kecepatan dan tekanan pada pipa horizontal.</li><li>Memakai konsep itu untuk masalah penyiraman kebun.</li></ul>
+<button class="b y" onclick="go(1)">Mulai Misi ▶</button></div></section>
+
+<section id="s1"><div class="card"><h2>Misi 1: Detektif Fenomena</h2>
+<p>① Air dari selang yang ujungnya dipersempit. ② Air mengalir di pipa dengan ukuran berbeda. ③ Air mengalir di pipa horizontal dengan kecepatan berbeda.</p>
+<ul><li>Mengapa air dari ujung selang yang dipersempit dapat memancar lebih cepat?</li><li>Apakah air yang bergerak lebih cepat selalu memiliki debit lebih besar?</li><li>Apakah tekanan air di setiap bagian pipa sama?</li><li>Bagaimana kita dapat membuktikan jawaban kita?</li></ul>
+<label for="f1">Prediksi ①: kecepatan air keluar saat ujung selang dipersempit (debit sumber tetap)</label><select id="f1"><option value="">– pilih –</option><option>Lebih besar</option><option>Tetap sama</option><option>Lebih kecil</option></select>
+<label for="f2">Prediksi ②: air dengan debit sama, kecepatan di pipa sempit dibanding pipa lebar</label><select id="f2"><option value="">– pilih –</option><option>Lebih besar</option><option>Tetap sama</option><option>Lebih kecil</option></select>
+<label for="f3">Prediksi ③: tekanan di bagian pipa yang aliran airnya lebih cepat</label><select id="f3"><option value="">– pilih –</option><option>Lebih besar</option><option>Tetap sama</option><option>Lebih kecil</option><option>Belum tahu</option></select>
+<label for="fr">Alasan prediksimu (min. 15 karakter)</label><textarea id="fr"></textarea>
+<label for="fq">Pertanyaan yang ingin kamu selidiki</label><textarea id="fq"></textarea>
+<div class="hint g">Petunjuk: bayangkan jumlah air yang harus lewat tiap detik. Jika jalannya menyempit, apa yang harus terjadi agar jumlah itu tetap lewat?</div>
+<p id="m1" class="wr"></p><button class="b y" onclick="savePred()">Simpan Prediksi dan Lanjutkan</button></div></section>
+
+<section id="s2"><div class="card"><h2>Misi 2: Laboratorium Virtual</h2>
+<p class="mut">Pipa horizontal, fluida ideal (tak termampatkan, aliran tunak, ρ = 1000 kg/m³). Data adalah <span class="pill">DATA SIMULASI</span>, bukan hasil eksperimen nyata.</p>
+<div><button class="b" id="mA" onclick="setMode('A')">Mode A: Kontinuitas</button><button class="b s" id="mB" onclick="setMode('B')">Mode B: Bernoulli</button></div>
+<canvas id="cv" width="640" height="270"></canvas>
+<div class="row"><div><label for="a1">Luas penampang 1: <b id="a1v"></b> cm²</label><input type="range" id="a1" min="4" max="12" step="0.5" value="8"></div>
+<div><label for="a2">Luas penampang 2: <b id="a2v"></b> cm²</label><input type="range" id="a2" min="1" max="12" step="0.5" value="4"></div>
+<div><label for="qq">Debit: <b id="qv"></b> L/s</label><input type="range" id="qq" min="0.2" max="1.5" step="0.1" value="1"></div>
+<div class="c"><label for="ls">Kehilangan energi (non-ideal): <b id="lv"></b></label><input type="range" id="ls" min="0" max="0.4" step="0.05" value="0"></div></div>
+<p id="ro" class="mut"></p>
+<button class="b" onclick="run=true">▶ Mulai</button><button class="b s" onclick="run=false">⏸ Jeda</button><button class="b s" onclick="resetLab()">↺ Reset</button><button class="b y" onclick="rec()">+ Catat Data</button><button class="b s" onclick="S.rows=[];renderAll()">Ulangi Eksperimen</button>
+<div class="hint g">Petunjuk: ubah hanya satu slider setiap kali, lalu catat. Minimal tiga kombinasi berbeda.</div>
+<div class="hint c">Tantangan: naikkan kehilangan energi lalu bandingkan P₂ dengan prediksi Bernoulli ideal. Asumsi apa yang tidak lagi berlaku?</div>
+<div class="tw"><table id="tl"></table></div>
+<div id="qa"><h3>Pertanyaan Penuntun (Mode A)</h3><ol><li>Apa yang terjadi pada kecepatan saat penampang mengecil? Dan saat membesar?</li><li>Apakah hasil kali luas penampang dan kecepatan menunjukkan pola?</li><li>Bagaimana kamu menjelaskan pola itu?</li></ol></div>
+<div id="qb" style="display:none"><h3>Pertanyaan Penuntun (Mode B)</h3><ol><li>Bagaimana tekanan berubah ketika kecepatan meningkat?</li><li>Pola apa yang kamu temukan dari beberapa percobaan?</li><li>Bukti mana yang mendukung kesimpulanmu?</li></ol></div>
+<label for="cs">Kesimpulan sementaramu</label><textarea id="cs"></textarea>
+<button class="b y" onclick="finish(2,'cs',20,'m2')">Selesai Misi 2 ▶</button> <span id="m2" class="wr"></span></div></section>
+
+<section id="s3"><div class="card"><h2>Misi 3: Analisis Data dan Temukan Pola</h2>
+<p>Data dari laboratoriummu tampil di sini. Kamu juga boleh menambah data sendiri.</p>
+<div class="row"><div><label for="ma1">A₁ (cm²)</label><input id="ma1" type="number" step="any"></div><div><label for="mv1">v₁ (m/s)</label><input id="mv1" type="number" step="any"></div><div><label for="ma2">A₂ (cm²)</label><input id="ma2" type="number" step="any"></div><div><label for="mv2">v₂ (m/s)</label><input id="mv2" type="number" step="any"></div></div>
+<button class="b" onclick="addManual()">+ Tambah Data</button><span id="me" class="wr"></span>
+<div class="tw"><table id="t3"></table></div><canvas id="c3" width="640" height="240"></canvas>
+<h3>Kalkulator debit</h3><div class="row"><div><label for="cv_">Volume V (L)</label><input id="cv_" type="number" step="any"></div><div><label for="ct">Waktu t (s)</label><input id="ct" type="number" step="any"></div></div>
+<button class="b s" onclick="calcQ()">Hitung Q = V/t</button> <b id="cq"></b>
+<div class="hint g">Petunjuk: bandingkan dua kolom hasil kali. Apa yang sama dan apa yang berbeda dari satu percobaan ke percobaan lain?</div>
+<label for="k3">Tuliskan polamu dan rumus buatanmu sendiri (min. 25 karakter, minimal 3 data)</label><textarea id="k3"></textarea>
+<button class="b y" id="rv3" onclick="rv(3)">Bandingkan dengan Konsep Ilmiah</button>
+<div class="rev" id="r3" style="display:none"><b>Persamaan kontinuitas:</b> A₁v₁ = A₂v₂ (fluida tak termampatkan, aliran tunak).<br><b>Debit:</b> Q = Av = V/t.<br>A = luas penampang (m²; 1 cm² = 10⁻⁴ m²), v = kecepatan (m/s), V = volume (m³), t = waktu (s), Q dalam m³/s (1 L/s = 10⁻³ m³/s).<br>Contoh: air dari keran mengisi ember 20 L dalam 40 s, maka Q = 0,5 L/s. Cocokkan dengan rumusmu: apa yang perlu kamu perbaiki?</div>
+<button class="b y" onclick="finish(3,'k3',25,'m3')">Selesai Misi 3 ▶</button> <span id="m3" class="wr"></span></div></section>
+
+<section id="s4"><div class="card"><h2>Misi 4: Buktikan Prinsip Bernoulli</h2>
+<p>Gunakan lab Mode B untuk mencatat data, lalu amati kecepatan dan tekanan statis.</p>
+<div class="tw"><table id="t4"></table></div><canvas id="c4" width="640" height="240"></canvas>
+<div class="hint g">Petunjuk: urutkan percobaan dari v terkecil ke terbesar. Ke arah mana P bergerak?</div>
+<label for="k4">Kesimpulanmu tentang hubungan v dan P pada pipa horizontal (min. 25 karakter)</label><textarea id="k4"></textarea>
+<button class="b y" onclick="rv(4)">Bandingkan dengan Konsep Ilmiah</button>
+<div class="rev" id="r4" style="display:none"><b>P + ½ρv² + ρgh = konstan.</b> Pipa horizontal (h₁ = h₂): P₁ + ½ρv₁² = P₂ + ½ρv₂².<br>P = tekanan statis (Pa), ρ = massa jenis (kg/m³), v = kecepatan (m/s), g = percepatan gravitasi (m/s²), h = ketinggian (m).<br>Berlaku untuk fluida ideal, aliran tunak, tanpa viskositas, sepanjang satu garis alir. Pada sistem nyata, viskositas dan kehilangan energi mengurangi tekanan (coba slider kehilangan energi di jalur Tantangan).<br>Perhatian: hubungan v naik ↔ P turun tidak boleh digeneralisasi bila ketinggian berubah atau ada pompa.</div>
+<button class="b y" onclick="finish(4,'k4',25,'m4')">Selesai Misi 4 ▶</button> <span id="m4" class="wr"></span></div></section>
+
+<section id="s5"><div class="card"><h2>Misi 5: Tantangan Literasi, Numerasi, dan HOTS</h2><p class="mut">Jawaban salah memberi petunjuk bertahap. Kamu boleh mencoba lagi.</p><div id="hq"></div>
+<h3>Skor objektif: <span id="sc">0</span>/100</h3>
+<p class="mut">Rubrik soal terbuka: konsep tepat (0–2), perhitungan/bukti data (0–1), argumentasi dan batasan model (0–1).</p>
+<button class="b y" onclick="finish(5,null,0,'m5')">Selesai Misi 5 ▶</button><span id="m5"></span></div></section>
+
+<section id="s6"><div class="card"><h2>Misi 6: Proyek Mini</h2>
+<p><b>Rancang sistem penyiraman tanaman sederhana untuk kebun sekolah menggunakan konsep fluida dinamis.</b> Ujung selang yang lebih sempit belum tentu lebih hemat air: bandingkan debit, tekanan sumber, durasi, dan kebutuhan air tanaman.</p><div id="pj"></div>
+<button class="b y" onclick="finish(6,null,0,'m6')">Simpan Proyek dan Lanjutkan ▶</button><span id="m6"></span></div></section>
+
+<section id="s7"><div class="card"><h2>Refleksi dan Asesmen Diri</h2><div id="rf"></div>
+<label>Tingkat pemahamanku</label><label class="opt"><input type="radio" name="lv" value="Mandiri"> Saya sudah mampu menjelaskan dan menerapkan konsep secara mandiri.</label><label class="opt"><input type="radio" name="lv" value="Perlu latihan"> Saya memahami konsep, tetapi masih membutuhkan latihan.</label><label class="opt"><input type="radio" name="lv" value="Perlu bimbingan"> Saya masih memerlukan bimbingan.</label>
+<h3>Exit Ticket</h3><label for="e1">1. Air melewati pipa 6 cm² dengan v = 2 m/s menuju pipa 3 cm². Berapa v di bagian kedua, dan mengapa?</label><textarea id="e1"></textarea>
+<label for="e2">2. Satu hal yang paling mengubah caramu memahami aliran air hari ini:</label><textarea id="e2"></textarea>
+<button class="b y" onclick="S.done[7]=1;go(8)">Buka Menu Laporan ▶</button><button class="b s" onclick="summary()">Buat Ringkasan Teks</button><button class="b s" onclick="copyS()">Salin</button> <span id="cp" class="ok"></span>
+<textarea id="sm" style="min-height:160px" readonly></textarea>
+<p class="mut">Untuk menyimpan dan mengunduh laporan lengkap, buka menu Laporan.</p></div></section>
+<section id="s8"><div class="card"><h2>Laporan Belajar</h2>
+<p class="mut">Rekap semua tugasmu dalam satu halaman. Pekerjaanmu tersimpan otomatis di browser perangkat ini. Unduh cadangan agar tidak hilang bila browser dibersihkan.</p>
+<div class="nobtn"><button class="b y" onclick="saveLocal()">💾 Simpan di Perangkat</button><button class="b s" onclick="loadLocal()">Pulihkan Simpanan</button><button class="b s" id="clr" onclick="clearAll()">Hapus Riwayat</button></div>
+<div class="nobtn"><button class="b" onclick="dl('html')">⬇ Unduh Laporan (.html)</button><button class="b" onclick="dl('csv')">⬇ Data (.csv)</button><button class="b" onclick="dl('json')">⬇ Cadangan (.json)</button></div>
+<p id="rmsg" class="mut" role="status" aria-live="polite"></p>
+<div class="nobtn rev"><b>Cara lain (HP Android atau iPhone/iPad):</b> <button class="b s" onclick="copyRep()">Salin Teks</button><button class="b s" onclick="printRep()">🖨 Cetak / Simpan PDF</button>
+<label for="ff">Pulihkan dari berkas cadangan (.json)</label><input type="file" id="ff" accept=".json,application/json"></div>
+<div id="rp"></div></div></section>
+</main>
+<div style="max-width:860px;margin:0 auto;padding:0 14px 20px" class="nobtn"><button class="b s" onclick="go(cur-1)">◀ Kembali</button><button class="b s" onclick="go(cur+1)">Lanjut ▶</button></div>
+<script>
+var $=function(i){return document.getElementById(i)};
+var S={rows:[],done:{0:1},mc:{},op:{}},cur=0,run=true,mode="A",RHO=1000,P1=200000;
+var T=["Beranda","Fenomena","Lab","Data","Bernoulli","HOTS","Proyek","Refleksi","Laporan"];
+$("nav").innerHTML=T.map(function(t,i){return '<button onclick="go('+i+')">'+t+'</button>'}).join("");
+function go(i){if(i<0||i>8)return;cur=i;for(var k=0;k<9;k++)$("s"+k).classList.toggle("on",k==i);
+ [].forEach.call($("nav").children,function(b,k){b.classList.toggle("on",k==i);b.classList.toggle("dn",!!S.done[k]&&k!=i)});
+ $("bar").firstChild.style.width=(Object.keys(S.done).length/8*100)+"%";renderAll();if(i==8)renderReport();window.scrollTo(0,0)}
+$("jl").onchange=function(){document.body.className="t-"+this.value};
+function num(x){return typeof x==="number"&&isFinite(x)}
+function f(x,d){return Number(x).toFixed(d==null?2:d).replace(".",",")}
+function savePred(){if(!$("f1").value||!$("f2").value||!$("f3").value||$("fr").value.trim().length<15){$("m1").textContent="Lengkapi ketiga prediksi dan tulis alasanmu (min. 15 karakter).";return}
+ $("m1").textContent="";S.done[1]=1;go(2)}
+function finish(i,id,min,msg){if(id&&$(id).value.trim().length<min){$(msg).textContent=" Tulis kesimpulanmu dulu (min. "+min+" karakter).";return}
+ if(i==3&&S.rows.length<3){$(msg).textContent=" Kumpulkan minimal 3 data.";return}
+ $(msg).textContent="";S.done[i]=1;go(i+1)}
+function rv(i){var k=$("k"+i).value.trim();if(k.length<25||(i==3&&S.rows.length<3)){alert("Tulis kesimpulan (min. 25 karakter) dan kumpulkan minimal 3 data dulu, baru bandingkan.");return}$("r"+i).style.display="block"}
+/* Model fisika */
+function calc(){var a1=+$("a1").value,a2=+$("a2").value,q=+$("qq").value,k=+$("ls").value;
+ var v1=q*1e-3/(a1*1e-4),v2=q*1e-3/(a2*1e-4);var p2=P1+0.5*RHO*(v1*v1-v2*v2)-k*0.5*RHO*v2*v2;return{a1:a1,a2:a2,q:q,v1:v1,v2:v2,p1:P1,p2:p2,k:k}}
+function setMode(m){mode=m;$("mA").className="b"+(m=="A"?"":" s");$("mB").className="b"+(m=="B"?"":" s");$("qa").style.display=m=="A"?"":"none";$("qb").style.display=m=="B"?"":"none"}
+function resetLab(){$("a1").value=8;$("a2").value=4;$("qq").value=1;$("ls").value=0;run=true}
+function rec(){var d=calc();if(S.rows.length>=12){alert("Maksimal 12 data. Tekan Ulangi Eksperimen untuk mulai lagi.");return}
+ S.rows.push({a1:d.a1,v1:+d.v1.toFixed(3),a2:d.a2,v2:+d.v2.toFixed(3),p1:d.p1,p2:Math.round(d.p2),k:d.k});renderAll()}
+function obs(r){var ra=r.a2/r.a1;return ra<1?"Penampang mengecil, v bertambah":ra>1?"Penampang membesar, v berkurang":"Penampang sama, v sama"}
+/* Animasi */
+var cv=$("cv"),cx=cv.getContext("2d"),pts=[];for(var i=0;i<70;i++)pts.push({x:40+Math.random()*560,f:Math.random()*1.7-.85});
+var CY=185;function hOf(a){return 14*Math.sqrt(a)}
+function hx(x,h1,h2){return x<=300?h1:x>=360?h2:h1+(h2-h1)*(x-300)/60}
+function draw(){var d=calc(),h1=hOf(d.a1),h2=hOf(d.a2),fg=getComputedStyle(document.body).color;
+ $("a1v").textContent=f(d.a1,1);$("a2v").textContent=f(d.a2,1);$("qv").textContent=f(d.q,1);$("lv").textContent=f(d.k,2);
+ cx.clearRect(0,0,640,270);cx.fillStyle="rgba(56,189,248,.35)";cx.strokeStyle="#0e7490";cx.lineWidth=3;cx.beginPath();
+ cx.moveTo(40,CY-h1);cx.lineTo(300,CY-h1);cx.lineTo(360,CY-h2);cx.lineTo(600,CY-h2);cx.lineTo(600,CY+h2);cx.lineTo(360,CY+h2);cx.lineTo(300,CY+h1);cx.lineTo(40,CY+h1);cx.closePath();cx.fill();cx.stroke();
+ cx.fillStyle="#f59e0b";pts.forEach(function(p){if(run){var h=hx(p.x,h1,h2),v=d.v1*Math.pow(h1/h,2);p.x+=Math.min(v*.7,12);if(p.x>598){p.x=42;p.f=Math.random()*1.7-.85}}
+  var h=hx(p.x,h1,h2);cx.beginPath();cx.arc(p.x,CY+p.f*h,2.6,0,6.3);cx.fill()});
+ cx.fillStyle=fg;cx.font="13px system-ui";cx.textAlign="center";
+ [[170,h1,d.a1,d.v1,d.p1,"1"],[480,h2,d.a2,d.v2,d.p2,"2"]].forEach(function(t){
+  cx.fillText("A"+t[5]+" = "+f(t[2],1)+" cm²",t[0],CY+t[1]+18);cx.fillText("v"+t[5]+" = "+f(t[3])+" m/s",t[0],CY+t[1]+34);
+  if(mode=="B"){var L=Math.max(4,t[4]/200000*80),top=CY-t[1];cx.strokeStyle="#0e7490";cx.lineWidth=2;cx.strokeRect(t[0]-8,top-80,16,80);cx.fillStyle="#14b8a6";cx.fillRect(t[0]-7,top-L,14,L);cx.fillStyle=fg;cx.fillText("P"+t[5]+" = "+f(t[4]/1000,1)+" kPa",t[0],top-88)}});
+ $("ro").textContent="Q = "+f(d.q,1)+" L/s. Cek: A₁v₁ = "+f(d.a1*d.v1)+" cm²·m/s, A₂v₂ = "+f(d.a2*d.v2)+" cm²·m/s."+(mode=="B"?" Tekanan sumber P₁ diatur 200 kPa (data simulasi).":"");
+ requestAnimationFrame(draw)}
+/* Tabel & grafik */
+function tbl(id,head,rows){$(id).innerHTML="<tr>"+head.map(function(h){return"<th>"+h+"</th>"}).join("")+"</tr>"+(rows.length?rows.map(function(r){return"<tr>"+r.map(function(c){return"<td>"+c+"</td>"}).join("")+"</tr>"}).join(""):'<tr><td colspan="'+head.length+'" class="mut">Belum ada data. Catat dari Lab.</td></tr>')}
+function bars(id){var c=$(id),g=c.getContext("2d"),fg=getComputedStyle(document.body).color;g.clearRect(0,0,640,240);var R=S.rows;if(!R.length){g.fillStyle=fg;g.fillText("Grafik muncul setelah ada data.",20,30);return}
+ var mx=Math.max.apply(null,R.map(function(r){return Math.max(r.a1*r.v1,r.a2*r.v2)}))*1.15,w=Math.min(34,560/R.length/2.4);g.font="12px system-ui";
+ R.forEach(function(r,i){var x=50+i*(560/R.length),y1=r.a1*r.v1/mx*180,y2=r.a2*r.v2/mx*180;g.fillStyle="#0e7490";g.fillRect(x,210-y1,w,y1);g.fillStyle="#facc15";g.fillRect(x+w+2,210-y2,w,y2);g.fillStyle=fg;g.textAlign="left";g.fillText("#"+(i+1),x,226)});
+ g.fillStyle="#0e7490";g.fillRect(50,8,10,10);g.fillStyle=fg;g.fillText("A₁v₁",64,17);g.fillStyle="#facc15";g.fillRect(120,8,10,10);g.fillStyle=fg;g.fillText("A₂v₂ (cm²·m/s)",134,17)}
+function scat(id){var c=$(id),g=c.getContext("2d"),fg=getComputedStyle(document.body).color;g.clearRect(0,0,640,240);var P=[];S.rows.forEach(function(r){if(r.p1){P.push([r.v1,r.p1/1000]);P.push([r.v2,r.p2/1000])}});g.fillStyle=fg;g.font="12px system-ui";
+ if(!P.length){g.fillText("Grafik P terhadap v muncul setelah mencatat data di Lab.",20,30);return}
+ P.sort(function(a,b){return a[0]-b[0]});var xm=Math.max.apply(null,P.map(function(p){return p[0]}))*1.1,ys=P.map(function(p){return p[1]}),y0=Math.min.apply(null,ys)*.9,y1=Math.max.apply(null,ys)*1.05;
+ var X=function(v){return 55+v/xm*560},Y=function(p){return 205-(p-y0)/(y1-y0)*180};g.strokeStyle=fg;g.beginPath();g.moveTo(55,10);g.lineTo(55,205);g.lineTo(620,205);g.stroke();g.fillText("v (m/s)",570,225);g.fillText("P (kPa)",5,15);g.fillText(f(y1,0),20,30);g.fillText(f(y0,0),20,205);
+ g.strokeStyle="#14b8a6";g.beginPath();P.forEach(function(p,i){i?g.lineTo(X(p[0]),Y(p[1])):g.moveTo(X(p[0]),Y(p[1]))});g.stroke();g.fillStyle="#f59e0b";P.forEach(function(p){g.beginPath();g.arc(X(p[0]),Y(p[1]),4,0,6.3);g.fill()})}
+function renderAll(){var R=S.rows;
+ tbl("tl",["Percobaan","A₁ (cm²)","v₁ (m/s)","A₂ (cm²)","v₂ (m/s)","Hasil pengamatan"],R.map(function(r,i){return[i+1,f(r.a1,1),f(r.v1),f(r.a2,1),f(r.v2),obs(r)]}));
+ tbl("t3",["#","A₁ (cm²)","v₁","A₂","v₂","A₁v₁","A₂v₂","Q₁ (L/s)"],R.map(function(r,i){return[i+1,f(r.a1,1),f(r.v1),f(r.a2,1),f(r.v2),f(r.a1*r.v1),f(r.a2*r.v2),f(r.a1*1e-4*r.v1*1000,3)]}));
+ var B=R.filter(function(r){return r.p1});tbl("t4",["#","v₁ (m/s)","P₁ (kPa)","v₂ (m/s)","P₂ (kPa)","ΔP = P₂ − P₁ (kPa)"],B.map(function(r,i){return[i+1,f(r.v1),f(r.p1/1000,1),f(r.v2),f(r.p2/1000,1),f((r.p2-r.p1)/1000,1)]}));
+ if(cur==3)bars("c3");if(cur==4)scat("c4")}
+function addManual(){var a=["ma1","mv1","ma2","mv2"].map(function(i){return parseFloat($(i).value.replace(",","."))});
+ if(!a.every(function(x){return num(x)&&x>0})){$("me").textContent=" Isi keempat kolom dengan angka lebih dari 0.";return}
+ if(S.rows.length>=12){$("me").textContent=" Maksimal 12 data.";return}$("me").textContent="";S.rows.push({a1:a[0],v1:a[1],a2:a[2],v2:a[3]});["ma1","mv1","ma2","mv2"].forEach(function(i){$(i).value=""});renderAll()}
+function calcQ(){var v=parseFloat($("cv_").value.replace(",",".")),t=parseFloat($("ct").value.replace(",","."));$("cq").textContent=num(v)&&num(t)&&v>0&&t>0?" Q = "+f(v/t,3)+" L/s = "+(v/t/1000).toExponential(2).replace(".",",")+" m³/s":" Isi V dan t dengan angka lebih dari 0."}
+/* Soal */
+var Q=[{q:"Tabel simulasi: A = 8, 4, 2 cm² dengan v = 1,5; 3; 6 m/s. Berapa debit air di pipa itu?",o:["0,12 L/s","1,2 L/s","12 L/s","120 L/s"],a:1,h:["Hitung A × v pada satu baris dulu. Ubah cm² ke m².","8 cm² = 8×10⁻⁴ m². Hasil dalam m³/s, lalu ubah ke L/s (1 m³ = 1000 L)."],e:"Q = Av = 8×10⁻⁴ × 1,5 = 1,2×10⁻³ m³/s = 1,2 L/s, dan nilai ini sama untuk ketiga baris (kontinuitas)."},
+{q:"Selang kebun berpenampang 8 cm² dialiri air 1,5 m/s lalu menyempit menjadi 4 cm². Kecepatan di bagian sempit?",o:["0,75 m/s","1,5 m/s","3 m/s","6 m/s"],a:2,h:["Debit sama di semua penampang.","Jika A jadi setengahnya, v harus menjadi berapa kali?"],e:"A₁v₁ = A₂v₂ → 8×1,5 = 4×v₂ → v₂ = 3 m/s."},
+{q:"Ember 20 L terisi penuh dari keran dalam 40 s. Debit dalam SI?",o:["0,5 m³/s","5×10⁻⁴ m³/s","2×10⁻³ m³/s","2 m³/s"],a:1,h:["Q = V/t. Hitung dulu dalam L/s.","20 L = 20×10⁻³ m³."],e:"Q = 20 L / 40 s = 0,5 L/s = 5×10⁻⁴ m³/s."},
+{q:"Air ideal di pipa horizontal, v naik dari 2 m/s ke 6 m/s. Perubahan tekanan statis (ρ = 1000 kg/m³)?",o:["Naik 16 kPa","Turun 16 kPa","Turun 4 kPa","Tidak berubah"],a:1,h:["Pipa horizontal: P₁ + ½ρv₁² = P₂ + ½ρv₂².","ΔP = ½ρ(v₁² − v₂²) = 500 × (4 − 36). Perhatikan tandanya."],e:"P₂ − P₁ = ½·1000·(4 − 36) = −16.000 Pa, jadi tekanan turun 16 kPa."}];
+var OQ=[{t:"Sekolah ingin sistem penyiraman efisien. Air mengalir di pipa 8 cm² dengan 1,5 m/s, lalu ke bagian 4 cm². Tentukan kecepatan di bagian kedua, jelaskan alasan fisikamu, dan sebutkan apa yang belum dapat disimpulkan dari data itu tentang efisiensi penyiraman.",k:"v₂ = 3 m/s dari A₁v₁ = A₂v₂ (tunak, tak termampatkan). Debit tetap 1,2 L/s, sehingga data ini tidak menunjukkan penghematan air. Efisiensi bergantung pada durasi, tekanan sumber, kebutuhan air tanaman, dan kehilangan energi."},
+{t:"Temanmu berkata: “Ujung selang dipersempit pasti lebih hemat air.” Evaluasi pernyataan itu memakai konsep debit dan tekanan sumber.",k:"Penyempitan menaikkan v, bukan otomatis menurunkan debit. Debit bergantung pada tekanan sumber dan hambatan; jika debit turun, durasi penyiraman harus lebih lama. Hemat atau tidak harus dibuktikan dengan mengukur volume air per waktu dan kebutuhan tanaman."}];
+function renderQ(){var h="";Q.forEach(function(q,i){var m=S.mc[i]||{n:0,ok:0,sel:-1};h+='<div class="card"><b>'+(i+1)+'. '+q.q+'</b>'+q.o.map(function(o,j){return'<label class="opt"><input type="radio" name="q'+i+'" value="'+j+'"'+(m.sel==j?" checked":"")+'> '+o+'</label>'}).join("")+'<button class="b" onclick="chk('+i+')">Periksa</button><div id="fb'+i+'"></div></div>'});
+ OQ.forEach(function(q,i){h+='<div class="card"><b>'+(Q.length+i+1)+'. '+q.t+'</b><textarea id="op'+i+'"></textarea><button class="b s" onclick="rub('+i+')">Lihat Rubrik dan Contoh Jawaban</button><div id="ob'+i+'"></div></div>'});$("hq").innerHTML=h}
+function chk(i){var s=document.querySelector('input[name="q'+i+'"]:checked');var fb=$("fb"+i);if(!s){fb.innerHTML='<p class="wr">Pilih satu jawaban dulu.</p>';return}var m=S.mc[i]=S.mc[i]||{n:0,ok:0};if(m.ok)return;m.sel=+s.value;m.n++;
+ if(m.sel==Q[i].a){m.ok=1;fb.innerHTML='<p class="ok">Benar! '+Q[i].e+'</p>'}else if(m.n<3)fb.innerHTML='<p class="wr">Belum tepat, ayo coba lagi. Petunjuk: '+Q[i].h[Math.min(m.n-1,1)]+'</p>';else fb.innerHTML='<p class="wr">Pembahasan: '+Q[i].e+'</p>';
+ var t=0;Q.forEach(function(_,j){var x=S.mc[j];if(x&&x.ok)t+=x.n==1?100:x.n==2?70:40});$("sc").textContent=Math.round(t/Q.length)}
+function rub(i){if($("op"+i).value.trim().length<30){$("ob"+i).innerHTML='<p class="wr">Tulis jawabanmu dulu (min. 30 karakter).</p>';return}S.op[i]=$("op"+i).value;$("ob"+i).innerHTML='<div class="rev"><b>Contoh poin kunci:</b> '+OQ[i].k+'<br><b>Skor diri (0–4):</b> <select id="ss'+i+'"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select></div>'}
+/* Proyek & refleksi */
+var PJ=["Masalah yang diidentifikasi","Sketsa rancangan (deskripsi)","Variabel yang diamati","Prediksi berdasarkan konsep fisika","Cara mengukur debit","Data atau grafik (ringkas)","Penjelasan hasil (kontinuitas/Bernoulli)","Rekomendasi yang didukung bukti"];
+$("pj").innerHTML=PJ.map(function(p,i){return'<label for="pj'+i+'">'+(i+1)+'. '+p+'</label><textarea id="pj'+i+'"></textarea>'}).join("")+'<label for="pjl">Tautan dokumentasi (opsional)</label><input id="pjl" type="url" placeholder="https://">';
+var RF=["Konsep apa yang berhasil kamu temukan sendiri?","Data atau bukti apa yang paling meyakinkanmu?","Dugaan awal mana yang berubah setelah eksperimen?","Bagian mana yang masih membingungkan?","Bagaimana konsep fluida dinamis dapat diterapkan dalam kehidupan sehari-hari?"];
+$("rf").innerHTML=RF.map(function(p,i){return'<label for="rf'+i+'">'+p+'</label><textarea id="rf'+i+'"></textarea>'}).join("");
+function val(i){return $(i).value.trim()}
+function summary(){S.done[7]=1;var lv=document.querySelector('input[name="lv"]:checked');var o={nama:val("nm"),kelas:val("kl"),kelompok:val("kg"),jalur:$("jl").value,prediksi:[$("f1").value,$("f2").value,$("f3").value],alasan_prediksi:val("fr"),data_simulasi:S.rows,kesimpulan_lab:val("cs"),pola_kontinuitas:val("k3"),kesimpulan_bernoulli:val("k4"),skor_objektif:$("sc").textContent,proyek:PJ.map(function(p,i){return val("pj"+i)}),tautan:val("pjl"),refleksi:RF.map(function(p,i){return val("rf"+i)}),tingkat_pemahaman:lv?lv.value:"",exit_ticket:[val("e1"),val("e2")],catatan:"Data adalah data simulasi, bukan hasil eksperimen nyata."};
+ var csv="percobaan,A1_cm2,v1_ms,A2_cm2,v2_ms,P1_Pa,P2_Pa\n"+S.rows.map(function(r,i){return[i+1,r.a1,r.v1,r.a2,r.v2,r.p1||"",r.p2||""].join(",")}).join("\n");
+ $("sm").value="=== JSON ===\n"+JSON.stringify(o,null,2)+"\n\n=== CSV DATA SIMULASI ===\n"+csv;go(7)}
+function copyS(){var t=$("sm");if(!t.value){$("cp").textContent="Buat ringkasan dulu.";return}t.select();try{document.execCommand("copy");$("cp").textContent="Tersalin."}catch(e){$("cp").textContent="Salin manual: blok teks lalu tekan salin."}}
+/* ===== Menu Laporan ===== */
+var KEY="fluida_laporan_v1";
+var IDS=["a1","a2","qq","ls","nm","kl","kg","jl","f1","f2","f3","fr","fq","cs","k3","k4","pjl","e1","e2"];
+PJ.forEach(function(p,i){IDS.push("pj"+i)});RF.forEach(function(p,i){IDS.push("rf"+i)});
+var NM=["Beranda","Misi 1: Detektif Fenomena","Misi 2: Laboratorium Virtual","Misi 3: Analisis Data","Misi 4: Bernoulli","Misi 5: Tantangan HOTS","Misi 6: Proyek Mini","Refleksi dan Exit Ticket"];
+var JL={g:"Terbimbing",m:"Mandiri",c:"Tantangan"};
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function an(s){s=(s||"").trim();return s?'<div class="q">'+esc(s)+'</div>':'<i class="wr">belum diisi</i>'}
+function fmtT(iso){try{return new Date(iso).toLocaleString("id-ID",{dateStyle:"medium",timeStyle:"short"})}catch(e){return iso}}
+function setMsg(t,c){var m=$("rmsg");m.className=c||"mut";m.textContent=t}
+function recalc(){var t=0;Q.forEach(function(_,j){var x=S.mc[j];if(x&&x.ok)t+=x.n==1?100:x.n==2?70:40});$("sc").textContent=Math.round(t/Q.length)}
+function collect(){var d={v:1,waktu:new Date().toISOString(),f:{},rows:S.rows,done:S.done,mc:S.mc,op:{},ss:{}};
+ IDS.forEach(function(i){d.f[i]=$(i).value});var lv=document.querySelector('input[name="lv"]:checked');d.lv=lv?lv.value:"";
+ OQ.forEach(function(q,i){var t=$("op"+i),s=$("ss"+i);d.op[i]=t?t.value:"";d.ss[i]=s?s.value:""});d.skor=$("sc").textContent;return d}
+function t2(h,rows){return'<table><tr>'+h.map(function(x){return'<th>'+x+'</th>'}).join("")+'</tr>'+rows.map(function(r){return'<tr>'+r.map(function(c){return'<td>'+c+'</td>'}).join("")+'</tr>'}).join("")+'</table>'}
+function body(d){var g=d.f,h="",n=0,R=d.rows||[];for(var k=0;k<8;k++)if(d.done[k])n++;
+ h+='<h2>Identitas</h2>'+t2(["Nama","Kelas","Kelompok","Jalur belajar"],[[esc(g.nm)||"–",esc(g.kl)||"–",esc(g.kg)||"–",JL[g.jl]||"–"]]);
+ h+='<h2>Progres misi: '+Math.round(n/8*100)+'%</h2>'+t2(["Bagian","Status"],NM.map(function(x,i){return[x,d.done[i]?'<span class="ok">Selesai ✓</span>':'<span class="wr">Belum</span>']}));
+ h+='<h2>Misi 1: Prediksi</h2>'+t2(["Fenomena","Dugaan"],[["① Ujung selang dipersempit",esc(g.f1)||"–"],["② Pipa sempit dibanding pipa lebar",esc(g.f2)||"–"],["③ Tekanan di aliran lebih cepat",esc(g.f3)||"–"]])+'<p><b>Alasan:</b></p>'+an(g.fr)+'<p><b>Pertanyaan yang diselidiki:</b></p>'+an(g.fq);
+ h+='<h2>Misi 2–4: Data simulasi ('+R.length+' percobaan)</h2>'+(R.length?t2(["#","A₁ (cm²)","v₁ (m/s)","A₂ (cm²)","v₂ (m/s)","A₁v₁","A₂v₂","P₁ (kPa)","P₂ (kPa)"],R.map(function(r,i){return[i+1,f(r.a1,1),f(r.v1),f(r.a2,1),f(r.v2),f(r.a1*r.v1),f(r.a2*r.v2),r.p1?f(r.p1/1000,1):"–",r.p2?f(r.p2/1000,1):"–"]})):'<i class="wr">belum ada data</i>')+'<p class="m">Semua angka adalah data simulasi, bukan hasil eksperimen nyata.</p>';
+ h+='<p><b>Kesimpulan Lab:</b></p>'+an(g.cs)+'<p><b>Pola dan rumus buatan sendiri (Misi 3):</b></p>'+an(g.k3)+'<p><b>Kesimpulan Bernoulli (Misi 4):</b></p>'+an(g.k4);
+ h+='<h2>Misi 5: Tantangan HOTS. Skor objektif '+esc(d.skor)+'/100</h2>'+t2(["Soal","Hasil"],Q.map(function(q,i){var m=d.mc[i];return["Soal "+(i+1),m&&m.ok?'<span class="ok">Benar, percobaan ke-'+esc(m.n)+'</span>':m?'<span class="wr">Belum benar ('+esc(m.n)+' percobaan)</span>':'<span class="wr">Belum dikerjakan</span>']}));
+ OQ.forEach(function(q,i){h+='<p><b>Soal terbuka '+(i+1)+'</b> (skor diri '+esc(d.ss[i]||"–")+'/4):</p>'+an(d.op[i])});
+ h+='<h2>Misi 6: Proyek Mini</h2>';PJ.forEach(function(p,i){h+='<p><b>'+(i+1)+'. '+p+'</b></p>'+an(g["pj"+i])});h+='<p><b>Tautan dokumentasi:</b></p>'+an(g.pjl);
+ h+='<h2>Refleksi</h2>';RF.forEach(function(p,i){h+='<p><b>'+p+'</b></p>'+an(g["rf"+i])});
+ h+='<p><b>Tingkat pemahaman:</b> '+esc(d.lv||"belum dipilih")+'</p><p><b>Exit ticket 1 (pipa 6 cm² ke 3 cm²):</b></p>'+an(g.e1)+'<p><b>Exit ticket 2:</b></p>'+an(g.e2);
+ return h}
+function renderReport(){$("rp").innerHTML=body(collect())}
+var RCSS="body{font:15px/1.5 system-ui,-apple-system,sans-serif;max-width:800px;margin:auto;padding:16px;color:#0b2a35}h1{color:#0e7490;font-size:1.3rem}h2{color:#0e7490;border-bottom:2px solid #14b8a6;font-size:1.05rem;margin-top:1.4em}table{border-collapse:collapse;width:100%;font-size:.85rem}td,th{border:1px solid #c5e6ee;padding:4px 6px;text-align:left;vertical-align:top}th{background:#e6f7fa}.m{color:#4b6b76;font-size:.85rem}.ok{color:#15803d}.wr{color:#b45309}.q{white-space:pre-wrap;background:#f3fbfd;padding:6px 8px;border-radius:6px}";
+function pageHtml(d){return'<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Laporan Fluida – '+esc(d.f.nm||"Murid")+'</title><style>'+RCSS+'</style></head><body><h1>Laporan Belajar: Misi Detektif Aliran Air</h1><p class="m">SMAN 2 Linggo Sari Baganti · Fisika Fase F · Fluida Dinamis · dibuat '+esc(fmtT(d.waktu))+'</p>'+body(d)+'</body></html>'}
+function cq(x){x=String(x==null?"":x);if(/^[=+\-@]/.test(x))x="'"+x;return'"'+x.replace(/"/g,'""')+'"'}
+function csvOf(d){var g=d.f,id=[cq(g.nm),cq(g.kl),cq(g.kg)].join(","),R=d.rows||[],L=["nama,kelas,kelompok,percobaan,A1_cm2,v1_ms,A2_cm2,v2_ms,A1xv1_cm2ms,A2xv2_cm2ms,P1_kPa,P2_kPa"];
+ R.forEach(function(r,i){L.push(id+","+[i+1,r.a1,r.v1,r.a2,r.v2,+(r.a1*r.v1).toFixed(3),+(r.a2*r.v2).toFixed(3),r.p1?r.p1/1000:"",r.p2?+(r.p2/1000).toFixed(1):""].join(","))});
+ if(!R.length)L.push(id+",,,,,,,,,,");return"\ufeff"+L.join("\r\n")}
+function safeName(s){return String(s||"").trim().replace(/[^A-Za-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,40)||"murid"}
+async function dl(kind){var d=collect(),n=safeName(d.f.nm),file,data;
+ if(kind=="html"){file="Laporan-Fluida-"+n+".html";data=pageHtml(d)}
+ else if(kind=="csv"){file="Data-Fluida-"+n+".csv";data=csvOf(d)}
+ else{file="Cadangan-Fluida-"+n+".json";data=JSON.stringify(d,null,2)}
+ var dn=null;try{dn=window.claude?await window.claude.use("downloads"):null}catch(e){dn=null}
+ if(!dn){setMsg("Unduhan langsung tidak tersedia di tampilan ini. Gunakan Salin Teks atau Cetak/PDF di bawah.","wr");return}
+ try{await dn.save({filename:file,data:data});setMsg("File siap disimpan: "+file,"ok")}
+ catch(e){var c=e&&e.code;setMsg(c=="declined"?"Unduhan dibatalkan.":c=="rate_limited"?"Tunggu sebentar lalu coba lagi.":"Unduhan tidak dapat dilakukan di tampilan ini. Gunakan Salin Teks atau Cetak/PDF.","wr")}}
+function saveLocal(){var d=collect();try{localStorage.setItem(KEY,JSON.stringify(d));setMsg("Tersimpan di perangkat ini ("+fmtT(d.waktu)+"). Simpanan hanya ada di browser ini. Unduh Cadangan (.json) agar aman.","ok")}catch(e){setMsg("Penyimpanan di browser tidak tersedia (mungkin mode pribadi). Gunakan Unduh Cadangan (.json).","wr")}}
+function loadLocal(){var t=null;try{t=localStorage.getItem(KEY)}catch(e){}
+ if(!t){setMsg("Belum ada simpanan di perangkat ini.","wr");return}
+ try{restore(JSON.parse(t));setMsg("Simpanan dipulihkan.","ok")}catch(e){setMsg("Simpanan tidak dapat dibaca.","wr")}}
+function restore(d){if(!d||typeof d!=="object"||!d.f)throw new Error("bad");
+ IDS.forEach(function(i){if(d.f[i]!=null&&$(i))$(i).value=String(d.f[i]).slice(0,4000)});
+ if(!JL[$("jl").value])$("jl").value="g";document.body.className="t-"+$("jl").value;
+ S.rows=(Array.isArray(d.rows)?d.rows:[]).filter(function(r){return r&&num(r.a1)&&num(r.v1)&&num(r.a2)&&num(r.v2)}).slice(0,12);
+ S.done={0:1};if(d.done)for(var k=0;k<8;k++)if(d.done[k])S.done[k]=1;
+ S.mc=d.mc&&typeof d.mc==="object"?d.mc:{};S.op={};renderQ();
+ Q.forEach(function(q,i){var m=S.mc[i];if(m&&m.ok)$("fb"+i).innerHTML='<p class="ok">Benar! '+q.e+'</p>'});
+ OQ.forEach(function(q,i){var v=d.op&&d.op[i];if(v){$("op"+i).value=String(v).slice(0,4000);if(String(v).trim().length>=30){rub(i);if(d.ss&&d.ss[i])$("ss"+i).value=d.ss[i]}}});
+ [].forEach.call(document.querySelectorAll('input[name="lv"]'),function(r){r.checked=r.value===d.lv});
+ setMode(d.mode==="B"?"B":"A");recalc();go(typeof d.cur==="number"&&d.cur>=0&&d.cur<=8?d.cur:cur)}
+function copyRep(){var t=$("rp").innerText;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){setMsg("Teks laporan disalin.","ok")},selCopy)}else selCopy()}
+function selCopy(){var r=document.createRange();r.selectNodeContents($("rp"));var s=window.getSelection();s.removeAllRanges();s.addRange(r);var ok=false;try{ok=document.execCommand("copy")}catch(e){}setMsg(ok?"Teks laporan disalin.":"Teks laporan terpilih. Tekan dan tahan, lalu pilih Salin.",ok?"ok":"wr")}
+function printRep(){go(8);setTimeout(function(){window.print()},250)}
+var restoring=false,ready=false,saveT=null,warned=false,clrT=null;
+function setAs(t){var e=$("as");if(e)e.textContent=t}
+function doSave(){if(!ready||restoring)return;try{var d=collect();d.cur=cur;d.mode=mode;localStorage.setItem(KEY,JSON.stringify(d));setAs("✓ Tersimpan otomatis "+new Date().toLocaleTimeString("id-ID",{hour:"2-digit",minute:"2-digit"}))}catch(e){if(!warned){warned=true;setAs("⚠ Simpan otomatis tidak tersedia di browser ini. Unduh cadangan dari menu Laporan.")}}}
+function autoSave(){if(!ready||restoring)return;clearTimeout(saveT);saveT=setTimeout(doSave,600)}
+function initSaved(){var t=null;try{t=localStorage.getItem(KEY)}catch(e){}
+ if(t){restoring=true;try{var d=JSON.parse(t);restore(d);setAs("↻ Riwayat pengerjaan dipulihkan ("+fmtT(d.waktu)+")")}catch(e){}restoring=false}
+ ready=true}
+["input","change","click"].forEach(function(ev){document.addEventListener(ev,autoSave,true)});
+document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden")doSave()});
+window.addEventListener("pagehide",doSave);
+function clearAll(){var b=$("clr");if(b.dataset.arm!=="1"){b.dataset.arm="1";b.textContent="Yakin hapus? Klik lagi";clrT=setTimeout(function(){b.dataset.arm="0";b.textContent="Hapus Riwayat"},4000);return}
+ clearTimeout(clrT);b.dataset.arm="0";b.textContent="Hapus Riwayat";
+ var bl={f:{},rows:[],done:{},mc:{},op:{},ss:{},lv:"",cur:0,mode:"A"},dv={jl:"g",a1:"8",a2:"4",qq:"1",ls:"0"};IDS.forEach(function(i){bl.f[i]=dv[i]||""});
+ restoring=true;try{restore(bl)}catch(e){}restoring=false;try{localStorage.removeItem(KEY)}catch(e){}clearTimeout(saveT);setAs("");setMsg("Riwayat di perangkat ini dihapus.","ok")}
+$("ff").onchange=function(){var fl=this.files&&this.files[0];if(!fl)return;if(fl.size>2000000){setMsg("Berkas terlalu besar.","wr");return}
+ var r=new FileReader();r.onload=function(){try{restore(JSON.parse(r.result));setMsg("Cadangan dipulihkan.","ok")}catch(e){setMsg("Berkas cadangan tidak valid.","wr")}};r.readAsText(fl);this.value=""};
+setMode("A");renderQ();go(0);draw();initSaved();
+</script></body></html>

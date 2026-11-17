@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Laboratorium Virtual Induksi Elektromagnetik</title>
+<style>
+:root{--bg:#f2f5fb;--card:#fff;--tx:#14213d;--mut:#5b6b85;--ln:#d6deeb;--ac:#2563eb;--ac2:#e0e9ff;--ok:#15803d;--bad:#b91c1c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#141d30;--tx:#e6ecf8;--mut:#9aa9c4;--ln:#26324d;--ac:#6aa0ff;--ac2:#1c2a4a;--ok:#4ade80;--bad:#f87171}}
+:root[data-theme="dark"]{--bg:#0b1220;--card:#141d30;--tx:#e6ecf8;--mut:#9aa9c4;--ln:#26324d;--ac:#6aa0ff;--ac2:#1c2a4a;--ok:#4ade80;--bad:#f87171}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:18px 16px;background:linear-gradient(120deg,#1d4ed8,#7c3aed);color:#fff}
+header h1{margin:0;font-size:clamp(18px,4vw,28px);letter-spacing:.3px}
+header p{margin:4px 0 0;opacity:.9;font-size:14px}
+main{max-width:1100px;margin:0 auto;padding:12px}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:14px;margin-bottom:12px}
+canvas{width:100%;display:block;border-radius:10px;background:#0f172a}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+button{font:inherit;cursor:pointer;border:1px solid var(--ln);background:var(--card);color:var(--tx);padding:8px 12px;border-radius:10px;transition:.15s}
+button:hover{border-color:var(--ac)}
+button.p{background:var(--ac);color:#fff;border-color:var(--ac)}
+button.on{background:var(--ac2);border-color:var(--ac)}
+.sl{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px}
+.sl label{display:block;font-weight:600;font-size:14px}
+input[type=range]{width:100%;accent-color:var(--ac)}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.k{background:var(--bg);border:1px solid var(--ln);border-radius:12px;padding:10px}
+.k small{color:var(--mut);display:block;font-size:12px}
+.k b{font-size:19px;font-variant-numeric:tabular-nums}
+#expl{border-left:5px solid var(--ac)}
+nav{display:flex;gap:6px;overflow-x:auto;margin-bottom:10px}
+nav button{white-space:nowrap}
+section.t{display:none}section.t.show{display:block}
+h2{margin:0 0 8px;font-size:18px}h3{margin:12px 0 4px;font-size:15px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:13px}
+th,td{border:1px solid var(--ln);padding:5px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+td input,textarea{width:100%;font:inherit;background:var(--bg);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:4px}
+.q button{display:block;width:100%;text-align:left;margin:6px 0}
+.q button.ok{background:rgba(22,163,74,.18);border-color:var(--ok)}
+.q button.no{background:rgba(220,38,38,.16);border-color:var(--bad)}
+.ex{margin-top:6px;padding:8px;border-radius:8px;background:var(--ac2);font-size:14px}
+.note{color:var(--mut);font-size:13px}
+input[type=number]{width:80px;font:inherit;background:var(--bg);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:4px}
+code{background:var(--bg);padding:1px 5px;border-radius:5px}
+#idc input,.rp input[type=text],.rp input[type=date]{width:100%;font:inherit;background:var(--bg);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:6px}
+.rp h3{border-bottom:1px solid var(--ln);padding-bottom:3px}
+select{font:inherit;background:var(--bg);color:var(--tx);border:1px solid var(--ln);border-radius:6px;padding:4px;max-width:150px}
+.rp img{max-width:100%;border-radius:8px;background:#0f172a;margin:4px 0}
+.id{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+@media print{:root{--bg:#fff!important;--card:#fff!important;--tx:#000!important;--mut:#444!important;--ln:#999!important;--ac:#1d4ed8!important;--ac2:#e5edff!important}header,nav,main>div.card,.noprint{display:none!important}main>section.t{display:none!important}main>section#tf{display:block!important;border:0}body{background:#fff}table{min-width:0}}
+</style></head><body>
+<header><h1>⚡ LABORATORIUM VIRTUAL INDUKSI ELEKTROMAGNETIK</h1><p>Fisika Kelas XII SMA · Fase F · Kurikulum Merdeka</p></header>
+<main>
+<div class="card" id="idc"><b>👤 Identitas Peserta Didik</b>
+<div class="id" style="margin-top:8px"><label>Nama<input type="text" id="rn" placeholder="Nama lengkap"></label><label>Kelas<input type="text" id="rk" placeholder="mis. XII IPA 1"></label><label>Kelompok<input type="text" id="rg"></label><label>Tanggal<input type="date" id="rd"></label></div>
+<div class="note" id="pgt" style="margin-top:10px"></div><div style="height:8px;background:var(--bg);border:1px solid var(--ln);border-radius:6px;overflow:hidden"><div id="pgb" style="height:100%;width:0;background:var(--ac);transition:.3s"></div></div>
+<p class="note" id="sv2" style="margin:6px 0 0"></p></div>
+<div class="card"><canvas id="cv"></canvas><p class="note" style="margin:6px 0 0">👆 Tip: seret magnet langsung dengan mouse atau jari. Semakin cepat digeser, semakin besar ε; berhenti digeser, ε kembali nol.</p>
+<div class="row">
+<button class="p" id="bIn">▶ Dorong magnet ke kumparan</button>
+<button class="p" id="bOut">◀ Tarik magnet menjauh</button>
+<button id="bPa">⏸ Jeda</button><button id="bRe">↺ Reset</button>
+<button id="bPol">⇄ Balik kutub</button><button id="bDir">⇅ Balik arah gerak</button><button id="bFl">〰 Garis medan</button><button id="bRec" class="p">➕ Catat ke tabel data</button></div>
+<div class="sl"><div><label>Kecepatan magnet: <span id="vS"></span> cm/s</label><input id="sv" type="range" min="1" max="20" step="1" value="6"></div>
+<div><label>Jumlah lilitan N: <span id="nS"></span></label><input id="sn" type="range" min="10" max="500" step="10" value="100"></div></div></div>
+
+<div class="card"><div class="g">
+<div class="k"><small>Kecepatan magnet</small><b id="rV"></b></div>
+<div class="k"><small>Jumlah lilitan</small><b id="rN"></b></div>
+<div class="k"><small>Fluks Φ</small><b id="rP"></b></div>
+<div class="k"><small>Laju perubahan fluks ΔΦ/Δt</small><b id="rD"></b></div>
+<div class="k"><small>GGL induksi sesaat ε</small><b id="rE"></b></div>
+<div class="k"><small>Arah arus induksi</small><b id="rA" style="font-size:15px"></b></div></div>
+<div class="card" id="expl" style="margin:10px 0 0"></div></div>
+
+<nav id="nav"><button data-t="a" class="on">📘 Belajar</button><button data-t="b">🧪 Eksperimen</button><button data-t="c">📈 Grafik</button><button data-t="d">🎯 Tantangan</button><button data-t="e">✅ Kesimpulan</button><button data-t="f">📝 Laporan</button></nav>
+
+<section class="t show card" id="ta"><h2>Petunjuk Penggunaan</h2>
+<ol><li>Klik <b>Dorong magnet</b> atau <b>Tarik magnet</b>, lalu amati jarum galvanometer.</li>
+<li>Ubah kecepatan dan jumlah lilitan dengan slider; amati nilai ε pada panel.</li>
+<li>Balik kutub atau arah gerak untuk melihat perubahan tanda GGL.</li>
+<li>Gunakan tab Eksperimen untuk mengisi tabel dan tab Grafik untuk melihat ε terhadap waktu.</li></ol>
+<h2>Ringkasan Konsep</h2><div class="two">
+<div class="k"><b>Fluks magnetik</b><br><code>Φ = B A cos θ</code><br>Jumlah garis medan yang menembus kumparan.</div>
+<div class="k"><b>Hukum Faraday</b><br><code>ε = −N ΔΦ/Δt</code><br>GGL sebanding dengan N dan laju perubahan fluks.</div>
+<div class="k"><b>Hukum Lenz</b><br>Arus induksi menghasilkan medan yang <i>melawan</i> perubahan fluks. Inilah makna tanda negatif.</div>
+<div class="k"><b>Model numerik</b><br>Magnet dimodelkan sebagai dipol pada sumbu kumparan: <code>Φ(z) = ±Φ₀ / (1+(z/R)²)^1,5</code>, Φ₀ = 5 mWb, R = 2,5 cm (θ = 0° atau 180° sehingga cos θ = ±1). Tiap langkah Δt = 1/120 s dan ε = −N·(Φbaru − Φlama)/Δt.</div></div>
+<p class="note">⚠ Ini model <b>ilustratif</b>, bukan pengukuran fisik nyata. Besar Φ₀, R, dan skala jarum galvanometer dipilih agar mudah diamati. Konvensi: ε positif = arus searah jarum jam bila dilihat dari sisi kiri kumparan.</p></section>
+
+<section class="t card" id="tb"><div class="k" id="pr" style="margin-bottom:6px"></div><div class="tw" id="ptb" style="margin-bottom:12px"></div><div class="k" id="kc" style="margin-bottom:6px"></div><div class="tw" id="ctb" style="margin-bottom:12px"></div><h2>Eksperimen Terbimbing</h2>
+<p class="note">Pilih percobaan, tunggu magnet melewati kumparan, lalu klik “Tambah ke tabel”. Arah dicatat pada GGL puncak pertama (saat mendekat).</p>
+<div class="row" id="exb"></div>
+<div class="row"><button class="p" id="bAdd">➕ Tambah hasil ke tabel</button><button id="bDel">🗑 Hapus semua data</button></div>
+<div class="tw" style="margin-top:10px"><table><thead><tr><th>No</th><th>Variabel yang diubah</th><th>Prediksi</th><th>Hasil pengamatan</th><th>Besar GGL</th><th>Arah GGL</th><th>Kesimpulan</th><th>Aksi</th></tr></thead><tbody id="tbd"></tbody></table></div></section>
+
+<section class="t card" id="tc"><h2>Grafik GGL Induksi terhadap Waktu</h2><canvas id="gr"></canvas><div class="row"><button id="bSn">📸 Simpan gambar grafik ke laporan</button><span class="note" id="snt"></span></div><h3 style="margin-top:16px">Hubungan Φ dan posisi magnet</h3><canvas id="gp"></canvas><p class="note">Titik kuning = posisi magnet sekarang, garis oranye = garis singgung. GGL sebanding dengan <b>kemiringan</b> kurva Φ(z) dikali kecepatan: curam → |ε| besar, di puncak kurva → ε = 0.</p>
+<p class="note">Jendela 12 detik terakhir. Garis datar di nol = fluks konstan. Coba balik kutub atau arah, serta ubah kecepatan dan N, lalu amati bentuk grafik.</p></section>
+
+<section class="t card" id="td"><h2>Tantangan HOTS</h2><div id="qz"></div></section>
+
+<section class="t card" id="te"><h2>Kesimpulan dan Refleksi</h2>
+<ul><li>GGL induksi muncul bila fluks magnetik yang menembus kumparan <b>berubah</b>.</li><li>GGL ∝ N dan ∝ laju perubahan fluks (kecepatan magnet).</li><li>Arah arus induksi melawan perubahan fluks (Hukum Lenz).</li></ul>
+<h3>Pertanyaan refleksi</h3>
+<p>1. Apa yang menyebabkan GGL induksi muncul?<textarea rows="2"></textarea></p>
+<p>2. Bagaimana kecepatan magnet memengaruhi GGL induksi?<textarea rows="2"></textarea></p>
+<p>3. Bagaimana jumlah lilitan memengaruhi GGL induksi?<textarea rows="2"></textarea></p>
+<p>4. Mengapa arah arus induksi berubah ketika gerakan magnet dibalik?<textarea rows="2"></textarea></p></section>
+<section class="t card rp" id="tf"><h2>📝 Laporan Praktikum Virtual</h2>
+<p class="note noprint">Identitas diisi di bagian atas halaman. Isi hipotesis, analisis, dan kesimpulan; semua tabel data, skor, dan refleksi terisi otomatis. Isian tersimpan otomatis di browser perangkat ini; untuk dikumpulkan, gunakan tombol Unduh atau Cetak.</p>
+<p id="rid"></p>
+<h3>Kelengkapan Pengerjaan</h3><div id="rc"></div><h3>A. Tujuan Pembelajaran</h3><ol id="rtj"></ol>
+<h3>B. Dasar Teori</h3><div id="rth"></div>
+<h3>C. Hipotesis</h3><textarea id="ra0" rows="3" placeholder="Tulis dugaanmu: bagaimana kecepatan magnet, jumlah lilitan, dan arah kutub memengaruhi GGL?"></textarea>
+<h3>D. Model Simulasi</h3><div id="rmd"></div>
+<h3>E. Data Hasil Eksperimen</h3><div class="tw" id="rt"></div><div id="rs"></div><h3>E2. Tabel Uji Prediksi</h3><div class="tw" id="rpt"></div><h3>E3. Tabel Kalkulator Faraday</h3><div class="tw" id="rct"></div>
+<h3>F. Analisis Data</h3>
+<p><b>Pengaruh kecepatan magnet terhadap GGL (sertakan angka dari tabel):</b><textarea id="ra1" rows="3"></textarea></p>
+<p><b>Pengaruh jumlah lilitan terhadap GGL:</b><textarea id="ra2" rows="3"></textarea></p>
+<p><b>Arah arus induksi, pembalikan kutub, dan Hukum Lenz:</b><textarea id="ra3" rows="3"></textarea></p>
+<h3>G. Hasil Uji Prediksi dan Tantangan HOTS</h3><div id="rq"></div>
+<h3>H. Jawaban Refleksi</h3><div id="rf"></div><p class="note noprint">Jawaban refleksi ditulis di tab Kesimpulan.</p>
+<h3>I. Kesimpulan</h3><textarea id="ra4" rows="4" placeholder="Simpulkan hasil percobaan dengan kalimatmu sendiri."></textarea>
+<h3>J. Riwayat Pengerjaan</h3><div id="rh"></div>
+<div class="row noprint"><button class="p" id="bRp">🔄 Perbarui laporan</button><button id="bDl">⬇ Unduh laporan (.html)</button><button id="bMd">⬇ Unduh teks (.md)</button><button id="bPr">🖨 Cetak / PDF</button><button id="bCp">📋 Salin teks</button><button id="bCl">🗑 Hapus semua isian</button></div><p class="note noprint" id="rm"></p></section>
+</main>
+<script>
+const $=i=>document.getElementById(i),R=2.5,P0=5,ZM=14,DT=1/120;
+const f=(x,d)=>(Math.abs(x)<Math.pow(10,-d)/2?0:x).toFixed(d).replace('.',',');
+const S={z:-10,dir:1,mv:false,pa:false,dr:false,tz:-10,fl:false,v:6,N:100,pol:1,t:0,phi:0,dp:0,eps:0,nd:0,pk:0,pks:0,ex:'Eksplorasi bebas'};
+const phi=z=>S.pol*P0/Math.pow(1+z*z/(R*R),1.5);S.phi=phi(S.z);
+let buf=[],acc=0,last=0;
+function step(){const v=S.mv?S.dir*S.v:0,zo=S.z;if(S.dr){S.z+=Math.max(-60*DT,Math.min(60*DT,S.tz-S.z))}else S.z+=v*DT;S.z=Math.max(-ZM,Math.min(ZM,S.z));
+if(Math.abs(S.z)>=ZM)S.mv=false;
+S.vz=(S.z-zo)/DT;const p=phi(S.z);S.dp=(p-S.phi)/DT;S.eps=-S.N*S.dp/1000;S.phi=p;S.t+=DT;
+if(Math.abs(S.eps)>S.pk*1.001){S.pk=Math.abs(S.eps);S.pks=S.eps}}
+function sync(){$('sv').value=S.v;$('sn').value=S.N;$('vS').textContent=S.v;$('nS').textContent=S.N;$('bPa').textContent=S.pa?'▶ Lanjut':'⏸ Jeda'}
+function reset(){Object.assign(S,{z:-10,dir:1,mv:false,pa:false,t:0,eps:0,dp:0,pk:0,pks:0,ex:'Eksplorasi bebas'});S.phi=phi(S.z);buf=[];sync();mark(-1)}
+$('bIn').onclick=()=>{S.dir=1;S.mv=S.z<ZM;S.pa=false;sync()};
+$('bOut').onclick=()=>{S.dir=-1;S.mv=S.z>-ZM;S.pa=false;sync()};
+$('bPa').onclick=()=>{S.pa=!S.pa;sync()};$('bRe').onclick=reset;
+$('bPol').onclick=()=>{S.pol*=-1;S.phi=phi(S.z)};
+$('bDir').onclick=()=>{S.dir*=-1;if(S.mv&&Math.abs(S.z)>=ZM)S.mv=false};
+$('sv').oninput=e=>{S.v=+e.target.value;sync()};$('sn').oninput=e=>{S.N=+e.target.value;sync()};
+
+const cv=$('cv'),gr=$('gr');
+const gx=e=>{const r=cv.getBoundingClientRect();return ((e.clientX-r.left)/r.width*700-350)/20};
+cv.style.touchAction='none';cv.style.cursor='grab';
+cv.onpointerdown=e=>{const z=gx(e);if(Math.abs(z-S.z)<5){S.dr=true;S.mv=false;S.pa=false;S.tz=z;cv.setPointerCapture(e.pointerId);cv.style.cursor='grabbing';sync()}};
+cv.onpointermove=e=>{if(S.dr)S.tz=gx(e)};
+cv.onpointerup=cv.onpointercancel=()=>{S.dr=false;cv.style.cursor='grab'};
+$('bFl').onclick=()=>{S.fl=!S.fl;$('bFl').classList.toggle('on',S.fl)};
+function fit(c,r){const w=c.clientWidth;if(!w)return 0;const d=devicePixelRatio||1,W=Math.round(w*d),H=Math.round(w*d*r);if(c.width!==W||c.height!==H){c.width=W;c.height=H}return c.width/700}
+function draw(){const s=fit(cv,300/700);if(!s)return;const x=cv.getContext('2d');x.setTransform(s,0,0,s,0,0);x.clearRect(0,0,700,300);
+const cx=350,cy=105,L=3+Math.round(S.N/50),on=Math.abs(S.eps)>.005;
+const col=on?(S.eps>0?'#38bdf8':'#fb923c'):'#d08a3a',x0=cx-(L-1)*3.5;
+x.lineWidth=3;x.strokeStyle=col;
+// kabel
+x.lineWidth=2.5;x.beginPath();x.moveTo(x0,cy+46);x.bezierCurveTo(x0,230,280,240,284,284);x.moveTo(x0+(L-1)*7,cy+46);x.bezierCurveTo(x0+(L-1)*7,230,420,240,416,284);x.stroke();
+x.lineWidth=3;
+for(let i=0;i<L;i++){x.beginPath();x.ellipse(x0+i*7,cy,9,46,0,Math.PI,2*Math.PI);x.stroke()}
+// magnet
+const mx=cx+S.z*20;
+if(S.fl){x.strokeStyle='rgba(250,204,21,.55)';x.fillStyle='rgba(250,204,21,.85)';x.lineWidth=1.5;[28,50,75].forEach(k=>{x.beginPath();x.ellipse(mx,cy,50+k*1.1,k,0,0,2*Math.PI);x.stroke();const d=-S.pol;x.beginPath();x.moveTo(mx+d*7,cy-k);x.lineTo(mx-d*5,cy-k-5);x.lineTo(mx-d*5,cy-k+5);x.fill()})}
+const parts=S.pol>0?[['S','#2563eb',mx-60],['U','#dc2626',mx]]:[['U','#dc2626',mx-60],['S','#2563eb',mx]];
+parts.forEach(p=>{x.fillStyle=p[1];x.fillRect(p[2],cy-17,60,34);x.fillStyle='#fff';x.font='bold 18px sans-serif';x.textAlign='center';x.fillText(p[0],p[2]+30,cy+6)});
+x.strokeStyle=col;x.lineWidth=3;
+for(let i=0;i<L;i++){x.beginPath();x.ellipse(x0+i*7,cy,9,46,0,0,Math.PI);x.stroke()}
+// galvanometer
+x.fillStyle='#f1f5f9';x.beginPath();x.arc(350,290,70,Math.PI,2*Math.PI);x.closePath();x.fill();
+x.strokeStyle='#475569';x.lineWidth=1.5;
+for(let a=-60;a<=60;a+=15){const r=(a-90)*Math.PI/180;x.beginPath();x.moveTo(350+Math.cos(r)*58,290+Math.sin(r)*58);x.lineTo(350+Math.cos(r)*66,290+Math.sin(r)*66);x.stroke()}
+x.fillStyle='#334155';x.font='13px sans-serif';x.textAlign='center';x.fillText('0',350,236);x.fillText('−',300,246);x.fillText('+',400,246);x.font='bold 13px sans-serif';x.fillText('G',350,278);
+S.nd+=(62*Math.tanh(S.eps/1.5)-S.nd)*.25;
+const r=(S.nd-90)*Math.PI/180;x.strokeStyle='#dc2626';x.lineWidth=3;x.beginPath();x.moveTo(350,290);x.lineTo(350+Math.cos(r)*60,290+Math.sin(r)*60);x.stroke();
+x.fillStyle='#e2e8f0';x.font='13px sans-serif';x.textAlign='left';x.fillText('t = '+f(S.t,1)+' s',12,22);x.fillText('ε = '+f(S.eps,3)+' V',12,40);
+x.textAlign='right';x.fillText('Lilitan: '+S.N,688,22);x.fillText('Sisi kiri = sisi magnet datang',688,40)}
+function drawP(){const c=$('gp'),s=fit(c,220/700);if(!s)return;const x=c.getContext('2d');x.setTransform(s,0,0,s,0,0);x.clearRect(0,0,700,220);
+const X=z=>50+(z+ZM)/(2*ZM)*640,Y=p=>110-p/5.5*90;
+x.strokeStyle='#334155';x.lineWidth=1;x.fillStyle='#94a3b8';x.font='11px sans-serif';x.textAlign='center';
+x.beginPath();x.moveTo(50,Y(0));x.lineTo(690,Y(0));x.moveTo(X(0),15);x.lineTo(X(0),205);x.stroke();
+for(let z=-12;z<=12;z+=4)x.fillText(z,X(z),Y(0)+(S.pol>0?14:-6));
+x.fillText('z (cm)',665,Y(0)-6);x.textAlign='left';x.fillText('Φ (mWb)',54,14);
+x.strokeStyle='#60a5fa';x.lineWidth=2.2;x.beginPath();for(let z=-ZM;z<=ZM;z+=.25){const p=S.pol*P0/Math.pow(1+z*z/(R*R),1.5);z===-ZM?x.moveTo(X(z),Y(p)):x.lineTo(X(z),Y(p))}x.stroke();
+const sl=-3*S.phi*S.z/(R*R+S.z*S.z);
+x.strokeStyle='#fb923c';x.lineWidth=2;x.beginPath();x.moveTo(X(S.z-1.5),Y(S.phi-sl*1.5));x.lineTo(X(S.z+1.5),Y(S.phi+sl*1.5));x.stroke();
+x.fillStyle='#facc15';x.beginPath();x.arc(X(S.z),Y(S.phi),5,0,7);x.fill()}
+function drawG(){if(!$('tc').classList.contains('show'))return;drawP();const s=fit(gr,260/700);if(!s)return;const x=gr.getContext('2d');x.setTransform(s,0,0,s,0,0);x.clearRect(0,0,700,260);
+let m=1;buf.forEach(p=>m=Math.max(m,Math.abs(p[1])));m*=1.15;const X=t=>50+(t-(S.t-12))/12*640,Y=e=>130-e/m*105;
+x.strokeStyle='#334155';x.fillStyle='#94a3b8';x.font='11px sans-serif';x.lineWidth=1;x.textAlign='right';
+for(let i=-2;i<=2;i++){const e=m*i/2;x.beginPath();x.moveTo(50,Y(e));x.lineTo(690,Y(e));x.stroke();x.fillText(f(e,2),44,Y(e)+4)}
+x.strokeStyle='#e2e8f0';x.lineWidth=1.5;x.beginPath();x.moveTo(50,Y(0));x.lineTo(690,Y(0));x.stroke();
+x.textAlign='center';for(let i=0;i<=12;i+=2){x.fillText(f(Math.max(0,S.t-12+i),0),50+i/12*640,252)}x.fillText('t (s)',370,222+20);
+x.save();x.translate(12,130);x.rotate(-Math.PI/2);x.fillText('ε (V)',0,0);x.restore();
+x.strokeStyle='#60a5fa';x.lineWidth=2.2;x.beginPath();buf.forEach((p,i)=>i?x.lineTo(X(p[0]),Y(p[1])):x.moveTo(X(p[0]),Y(p[1])));x.stroke()}
+function panel(){const v=S.dr?(S.vz||0):(S.mv?S.dir*S.v:0),tw=v*(-S.z)>0;
+$('rV').textContent=Math.abs(v)<.05?'0 cm/s (diam)':f(Math.abs(v),1)+' cm/s '+(tw?'mendekati':'menjauhi');
+$('rN').textContent=S.N;$('rP').textContent=f(S.phi,2)+' mWb';$('rD').textContent=f(S.dp,2)+' mWb/s';
+$('rE').textContent=f(S.eps,3)+' V';const on=Math.abs(S.eps)>.005;
+$('rA').textContent=on?(S.eps>0?'↻ Searah jarum jam':'↺ Berlawanan jarum jam')+' (dari kiri)':'Tidak ada arus (ε = 0)';
+let t;if(!on){t=((S.mv||S.dr)?'Magnet bergerak, tetapi perubahan fluksnya hampir nol (magnet masih jauh dari kumparan, atau tepat di tengah kumparan saat fluks maksimum)':'Magnet diam relatif terhadap kumparan: fluks konstan, ΔΦ = 0')+', sehingga <b>ε = 0</b> dan jarum menunjuk nol (Hukum Faraday).'}
+else{const inc=S.dp*S.phi>0;t='<b>Faraday:</b> fluks berubah ('+f(S.dp,1)+' mWb/s), jadi ε = −N ΔΦ/Δt = '+f(S.eps,3)+' V. <b>Lenz:</b> fluks '+(inc?'membesar':'mengecil')+', maka arus induksi membuat medan yang melawan perubahan itu; ujung kiri kumparan menjadi kutub '+(S.eps<0?'utara':'selatan')+'. Tanda negatif pada rumus mewakili sifat melawan ini.'}
+$('expl').innerHTML=t}
+function loop(ts){const d=Math.min(((ts||0)-last)/1000,.1);last=ts||0;
+if(!S.pa&&d>0){acc+=d;let n=0;while(acc>=DT){step();acc-=DT;n++}if(n){buf.push([S.t,S.eps]);while(buf.length&&buf[0][0]<S.t-12)buf.shift()}}
+draw();drawG();panel();requestAnimationFrame(loop)}
+
+// tab
+$('nav').onclick=e=>{const t=e.target.dataset.t;if(!t)return;document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b===e.target));document.querySelectorAll('section.t').forEach(s=>s.classList.toggle('show',s.id==='t'+t))};
+// eksperimen
+const EX=[['Magnet diam (v = 0)',{z:-3,m:false,v:6,N:100,p:1}],['Magnet bergerak lambat (2 cm/s)',{z:-10,m:true,v:2,N:100,p:1}],['Magnet bergerak cepat (12 cm/s)',{z:-10,m:true,v:12,N:100,p:1}],['Lilitan sedikit (N = 50)',{z:-10,m:true,v:6,N:50,p:1}],['Lilitan banyak (N = 400)',{z:-10,m:true,v:6,N:400,p:1}],['Kutub magnet dibalik (S menghadap kumparan)',{z:-10,m:true,v:6,N:100,p:-1}]];
+function mark(i){document.querySelectorAll('#exb button').forEach((b,j)=>b.classList.toggle('on',j===i))}
+EX.forEach((e,i)=>{const b=document.createElement('button');b.textContent=(i+1)+'. '+e[0].split(' (')[0];b.onclick=()=>{const c=e[1];Object.assign(S,{z:c.z,mv:c.m,v:c.v,N:c.N,pol:c.p,dir:1,pa:false,pk:0,pks:0,ex:e[0]});S.phi=phi(S.z);sync();mark(i)};$('exb').appendChild(b)});
+let rows=[];
+function rend(){$('tbd').innerHTML='';rows.forEach((r,i)=>{const tr=document.createElement('tr');
+tr.innerHTML='<td>'+(i+1)+'</td><td>'+r.v+'</td><td><input value="'+r.p+'" placeholder="mis. ε besar"></td><td>'+r.o+'</td><td>'+r.b+'</td><td>'+r.a+'</td><td><input value="'+r.k+'" placeholder="Tulis kesimpulan"></td><td><button>✕</button></td>';
+const ins=tr.querySelectorAll('input');ins[0].oninput=e=>r.p=e.target.value;ins[1].oninput=e=>r.k=e.target.value;
+tr.querySelector('button').onclick=()=>{rows.splice(i,1);rend()};$('tbd').appendChild(tr)})}
+$('bAdd').onclick=()=>{const z=S.pk<.005;rows.push({v:S.ex+', N = '+S.N+', v = '+S.v+' cm/s',p:'',o:z?'Jarum tidak menyimpang':'Jarum menyimpang ke '+(S.pks>0?'kanan':'kiri'),b:f(S.pk,3)+' V',a:z?'Tidak ada':(S.pks>0?'Searah jarum jam':'Berlawanan jarum jam'),k:''});rend()};
+$('bDel').onclick=()=>{rows=[];rend()};
+// kuis
+const Q=[
+['Dinamo sepeda: lampu menyala lebih terang saat sepeda dikayuh lebih cepat. Penjelasan yang paling tepat?',['Magnet di dinamo menjadi lebih kuat','Hambatan lampu mengecil','Jumlah lilitan bertambah sendiri','Fluks pada kumparan berubah lebih cepat sehingga ΔΦ/Δt dan ε membesar'],3,'Pada ε = −N ΔΦ/Δt, putaran lebih cepat membuat ΔΦ/Δt lebih besar. Kekuatan magnet dan N tidak berubah.'],
+['Kutub utara magnet didekatkan ke satu ujung kumparan. Ujung kumparan tersebut menjadi…',['kutub selatan sehingga menarik magnet','tidak bermagnet karena ε = 0','kutub utara sehingga menolak magnet','kutub selatan sehingga menambah fluks'],2,'Hukum Lenz: fluks bertambah, maka arus induksi melawan penambahan itu dengan menolak magnet (ujung menjadi kutub utara).'],
+['Data: pada kecepatan magnet yang sama, kumparan 100 lilitan menghasilkan ε maksimum 0,4 V. Jika diganti 300 lilitan, ε maksimum yang diprediksi…',['0,13 V','1,2 V','0,4 V','3,6 V'],1,'ε sebanding dengan N: 0,4 V × (300/100) = 1,2 V.'],
+['Generator pembangkit listrik memutar kumparan di medan magnet. Tindakan yang TIDAK menaikkan GGL puncak adalah…',['Memperkecil jumlah lilitan','Memutar kumparan lebih cepat','Menambah jumlah lilitan','Memperbesar luas kumparan'],0,'ε puncak = N B A ω. Mengurangi N menurunkan ε; tiga tindakan lain menaikkannya.'],
+['Kamu ingin menguji pengaruh jumlah lilitan terhadap GGL. Rancangan eksperimen yang benar…',['Ubah N dan kecepatan sekaligus lalu bandingkan','Ubah kutub magnet tiap percobaan','Ubah N saja; kecepatan, kutub, dan magnet dijaga tetap','Satu percobaan dengan N terbanyak'],2,'Eksperimen terkendali hanya mengubah satu variabel bebas (N); variabel lain dikontrol agar pengaruhnya terpisah.'],
+['Magnet digerakkan lalu dihentikan di dekat kumparan. Grafik ε–t saat magnet diam menunjukkan…',['ε konstan tidak nol','ε = 0 karena ΔΦ = 0','ε maksimum karena fluks maksimum','ε bernilai negatif'],1,'Fluks yang konstan berarti ΔΦ/Δt = 0, sehingga ε = 0 walaupun fluksnya besar. Yang menimbulkan GGL adalah perubahan fluks, bukan besar fluks.'],
+['Dengan kecepatan yang sama, kutub selatan dijauhkan dari kumparan, dibanding kutub utara dijauhkan. GGL induksinya…',['sama besar, arah berlawanan','lebih kecil, arah sama','nol','dua kali lebih besar, arah sama'],0,'Membalik kutub membalik tanda Φ dan ΔΦ, sehingga arah ε berbalik, sedangkan besarnya tetap karena N dan |ΔΦ/Δt| sama.'],
+['Kumparan 200 lilitan mengalami perubahan fluks 0,02 Wb dalam 0,1 s. Besar GGL induksi rata-rata…',['0,4 V','4 V','40 V','400 V'],2,'|ε| = N ΔΦ/Δt = 200 × 0,02 ÷ 0,1 = 40 V.']];
+let sc=0,ans=0,UA=[];
+function quiz(){sc=0;ans=0;UA=[];const z=$('qz');z.innerHTML='<p><b id="sk"></b></p>';
+Q.forEach((q,i)=>{const d=document.createElement('div');d.className='q k';d.style.marginBottom='10px';d.innerHTML='<b>'+(i+1)+'. '+q[0]+'</b>';const ex=document.createElement('div');ex.className='ex';ex.style.display='none';ex.innerHTML=q[3];
+const bs=q[1].map((o,j)=>{const b=document.createElement('button');b.textContent=String.fromCharCode(65+j)+'. '+o;b.onclick=()=>{bs.forEach((x,k)=>{x.disabled=true;if(k===q[2])x.classList.add('ok')});UA[i]=j;if(j===q[2])sc++;else b.classList.add('no');ex.style.display='block';ex.innerHTML=(j===q[2]?'✅ Benar. ':'❌ Kurang tepat. ')+q[3];ans++;skor()};d.appendChild(b);return b});d.appendChild(ex);z.appendChild(d)});
+const r=document.createElement('button');r.className='p';r.textContent='🔁 Coba lagi';r.onclick=quiz;z.appendChild(r);skor()}
+function skor(){$('sk').textContent='Skor: '+Math.round(sc*100/Q.length)+' / 100 ('+ans+' dari '+Q.length+' soal dijawab)'+(ans===Q.length?(sc===Q.length?' — Luar biasa! 🎉':sc>=Q.length*.6?' — Bagus, pelajari pembahasan yang salah.':' — Ulangi simulasi lalu coba lagi.'):'')}
+let pq,pc=0,pn=0;
+function newPq(){pq={p:Math.random()<.5?1:-1,ap:Math.random()<.5};prend('')}
+function prend(res){const q=pq,pole=q.p>0?'utara':'selatan';
+$('pr').innerHTML='<b>🎯 Uji Prediksi</b> <span class="note">Skor: '+pc+'/'+pn+'</span><br>Kutub <b>'+pole+'</b> magnet '+(q.ap?'didekatkan ke':'dijauhkan dari')+' kumparan. Ke mana jarum galvanometer menyimpang?<div class="row"><button>Kanan (ε &gt; 0)</button><button>Kiri (ε &lt; 0)</button><button>Tidak menyimpang</button></div>'+(res?'<div class="ex">'+res+'<br><button id="pnx">Soal baru</button></div>':'');
+if(res){$('pnx').onclick=newPq;return}
+document.querySelectorAll('#pr .row button').forEach((b,i)=>b.onclick=()=>{const ex=q.ap?-q.p:q.p,ok=[1,-1,0][i]===ex;pn++;if(ok)pc++;
+Object.assign(S,{pol:q.p,v:6,N:100,dir:q.ap?1:-1,z:q.ap?-10:-5,mv:true,pa:false,pk:0,pks:0,ex:'Uji prediksi'});S.phi=phi(S.z);sync();mark(-1);
+const opp=q.p>0?'selatan':'utara';
+prend((ok?'✅ Benar. ':'❌ Belum tepat. ')+(q.ap?'Fluks membesar, kumparan melawan dengan menolak magnet: ujung kiri menjadi kutub '+pole+'.':'Fluks mengecil, kumparan melawan dengan menarik magnet: ujung kiri menjadi kutub '+opp+'.')+' Medan induksi itu dihasilkan arus '+(ex>0?'searah':'berlawanan')+' jarum jam, sehingga jarum menyimpang ke '+(ex>0?'kanan':'kiri')+'. Lihat simulasi di atas!')})}
+$('kc').innerHTML='<b>🧮 Kalkulator Hukum Faraday</b><div class="row" style="align-items:center">N <input id="kn" type="number" value="200"> ΔΦ (mWb) <input id="kf" type="number" value="4"> Δt (s) <input id="kt" type="number" value="0.5" step="0.1"> <b id="ko"></b></div><div class="note" id="kx"></div>';
+function calc(){const n=+$('kn').value,df=+$('kf').value,dt=+$('kt').value;if(!dt){$('ko').textContent='Δt tidak boleh 0';$('kx').textContent='';return}
+const e=-n*df/1000/dt;$('ko').textContent='ε = '+f(e,3)+' V';$('kx').textContent='ε = −N ΔΦ/Δt = −'+n+' × '+(df/1000)+' Wb ÷ '+dt+' s. '+(e<0?'Fluks bertambah, maka ε negatif (melawan pertambahan, Lenz).':e>0?'Fluks berkurang, maka ε positif (melawan pengurangan, Lenz).':'ΔΦ = 0, tidak ada GGL.')}
+['kn','kf','kt'].forEach(i=>$(i).oninput=calc);calc();newPq();
+const T=['Menjelaskan terjadinya induksi elektromagnetik.','Menganalisis hubungan perubahan fluks magnetik dengan GGL induksi (Hukum Faraday).','Menentukan arah arus induksi dengan Hukum Lenz.','Menganalisis pengaruh kecepatan magnet dan jumlah lilitan terhadap GGL induksi.','Menginterpretasikan data dan grafik hasil eksperimen.','Menerapkan konsep induksi elektromagnetik pada masalah kontekstual.'];
+const RQ=['Apa yang menyebabkan GGL induksi muncul?','Bagaimana kecepatan magnet memengaruhi GGL induksi?','Bagaimana jumlah lilitan memengaruhi GGL induksi?','Mengapa arah arus induksi berubah ketika gerakan magnet dibalik?'];
+const THEORY='<p><b>Fluks magnetik:</b> Φ = B A cos θ (satuan weber, Wb). <b>Hukum Faraday:</b> ε = −N ΔΦ/Δt; GGL induksi sebanding dengan jumlah lilitan dan laju perubahan fluks. <b>Hukum Lenz:</b> tanda negatif menyatakan bahwa arus induksi menghasilkan medan magnet yang melawan perubahan fluks penyebabnya. Bila fluks konstan, ΔΦ = 0 sehingga ε = 0.</p>';
+const MODEL='<p>Simulasi memakai model <b>ilustratif</b> (bukan pengukuran fisik nyata): magnet dianggap dipol pada sumbu kumparan, Φ(z) = ±Φ₀/(1+(z/R)²)<sup>1,5</sup> dengan Φ₀ = 5 mWb dan R = 2,5 cm (cos θ = ±1). Setiap langkah Δt = 1/120 s dan ε = −N(Φbaru − Φlama)/Δt. Konvensi: ε positif berarti arus searah jarum jam dilihat dari sisi kiri kumparan, dan jarum galvanometer ke kanan. Nilai Φ₀ dan skala jarum dipilih agar mudah diamati; magnet dan kumparan sungguhan menghasilkan nilai yang jauh lebih kecil.</p>';
+$('rtj').innerHTML=T.map(t=>'<li>'+t+'</li>').join('');$('rth').innerHTML=THEORY;$('rmd').innerHTML=MODEL;
+const RF=['ra0','ra1','ra2','ra3','ra4','rn','rk','rg','rd'],KEY='labInduksiV1',V=id=>$(id).value;
+let SN=null,lastS='',cf=0;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const br=s=>esc(s||'—').replace(/\n/g,'<br>');
+function snapshot(){const mk=c=>{const t=document.createElement('canvas');t.width=c.width;t.height=c.height;const x=t.getContext('2d');x.fillStyle='#0f172a';x.fillRect(0,0,t.width,t.height);x.drawImage(c,0,0);return t.toDataURL('image/png')};
+SN={e:mk(gr),p:mk($('gp')),cap:'N = '+S.N+', v = '+S.v+' cm/s, kutub '+(S.pol>0?'utara':'selatan')+' menghadap kumparan, t = '+f(S.t,1)+' s'};$('snt').textContent='Gambar tersimpan di laporan ✔'}
+function qrows(){return Q.map((q,i)=>{const u=UA[i];return {n:i+1,u:u==null?'(belum dijawab)':String.fromCharCode(65+u)+'. '+q[1][u],ok:u===q[2],k:String.fromCharCode(65+q[2])+'. '+q[1][q[2]]}})}
+function rdata(){return {nm:V('rn'),kl:V('rk'),kp:V('rg'),tg:V('rd'),h:V('ra0'),a1:V('ra1'),a2:V('ra2'),a3:V('ra3'),ks:V('ra4'),rows:rows,q:qrows(),sc:Math.round(sc*100/Q.length),ans:ans,pc:pc,pn:pn,sn:SN,rf:[...document.querySelectorAll('#te textarea')].map(t=>t.value)}}
+function tbl(d){return '<table><thead><tr><th>No</th><th>Variabel yang diubah</th><th>Prediksi</th><th>Hasil pengamatan</th><th>Besar GGL</th><th>Arah GGL</th><th>Kesimpulan</th></tr></thead><tbody>'+(d.rows.length?d.rows.map((r,i)=>'<tr><td>'+(i+1)+'</td><td>'+esc(r.v)+'</td><td>'+esc(r.p)+'</td><td>'+esc(r.o)+'</td><td>'+esc(r.b)+'</td><td>'+esc(r.a)+'</td><td>'+esc(r.k)+'</td></tr>').join(''):'<tr><td colspan="7">Belum ada data. Tambahkan dari tab Eksperimen.</td></tr>')+'</tbody></table>'}
+function shtml(d){return d.sn?'<p class="note">Grafik: '+esc(d.sn.cap)+'</p><img src="'+d.sn.e+'" alt="Grafik GGL terhadap waktu"><img src="'+d.sn.p+'" alt="Grafik fluks terhadap posisi magnet">':'<p class="note">Belum ada gambar grafik (ambil di tab Grafik).</p>'}
+function qhtml(d){return '<p>Skor Tantangan HOTS: <b>'+d.sc+' / 100</b> ('+d.ans+' dari '+Q.length+' soal dijawab). Skor Uji Prediksi: <b>'+d.pc+' / '+d.pn+'</b>.</p><ul>'+d.q.map(r=>'<li>Soal '+r.n+': '+esc(r.u)+(r.u.charAt(0)==='('?'':(r.ok?' ✅':' ❌ (kunci: '+esc(r.k)+')'))+'</li>').join('')+'</ul>'}
+function fhtml(d){return RQ.map((q,i)=>'<p><b>'+(i+1)+'. '+q+'</b><br>'+br(d.rf[i])+'</p>').join('')}
+function buildRep(){const d=rdata();$('rt').innerHTML=tbl(d);$('rs').innerHTML=shtml(d);$('rq').innerHTML=qhtml(d);$('rf').innerHTML=fhtml(d)}
+function fullHTML(){const d=rdata();return '<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Laporan Induksi Elektromagnetik - '+esc(d.nm)+'</title><style>body{font:15px/1.55 system-ui,sans-serif;max-width:820px;margin:20px auto;padding:0 14px;color:#111}table{border-collapse:collapse;width:100%;font-size:13px}th,td{border:1px solid #999;padding:4px;vertical-align:top}th{background:#e5edff}img{max-width:100%;background:#0f172a;margin:4px 0}h1{font-size:22px}h3{border-bottom:1px solid #999}.note{color:#555;font-size:13px}</style></head><body><h1>Laporan Praktikum Virtual: Induksi Elektromagnetik</h1><p>Nama: <b>'+esc(d.nm)+'</b> · Kelas: <b>'+esc(d.kl)+'</b> · Kelompok: <b>'+esc(d.kp)+'</b> · Tanggal: <b>'+esc(d.tg)+'</b></p><h3>A. Tujuan Pembelajaran</h3><ol>'+T.map(t=>'<li>'+t+'</li>').join('')+'</ol><h3>B. Dasar Teori</h3>'+THEORY+'<h3>C. Hipotesis</h3><p>'+br(d.h)+'</p><h3>D. Model Simulasi</h3>'+MODEL+'<h3>E. Data Hasil Eksperimen</h3>'+tbl(d)+shtml(d)+'<h3>F. Analisis Data</h3><p><b>Pengaruh kecepatan magnet:</b><br>'+br(d.a1)+'</p><p><b>Pengaruh jumlah lilitan:</b><br>'+br(d.a2)+'</p><p><b>Arah arus induksi dan Hukum Lenz:</b><br>'+br(d.a3)+'</p><h3>G. Hasil Uji Prediksi dan Tantangan HOTS</h3>'+qhtml(d)+'<h3>H. Jawaban Refleksi</h3>'+fhtml(d)+'<h3>I. Kesimpulan</h3><p>'+br(d.ks)+'</p></body></html>'}
+function mdText(){const d=rdata();return '# Laporan Praktikum Virtual: Induksi Elektromagnetik\n\nNama: '+d.nm+' | Kelas: '+d.kl+' | Kelompok: '+d.kp+' | Tanggal: '+d.tg+'\n\n## Hipotesis\n'+(d.h||'—')+'\n\n## Data Eksperimen\n| No | Variabel | Prediksi | Pengamatan | Besar GGL | Arah | Kesimpulan |\n|---|---|---|---|---|---|---|\n'+d.rows.map((r,i)=>'| '+(i+1)+' | '+[r.v,r.p,r.o,r.b,r.a,r.k].join(' | ')+' |').join('\n')+'\n\n## Analisis\n- Kecepatan magnet: '+(d.a1||'—')+'\n- Jumlah lilitan: '+(d.a2||'—')+'\n- Arah arus (Lenz): '+(d.a3||'—')+'\n\n## Hasil\nSkor Tantangan HOTS: '+d.sc+'/100; Uji Prediksi: '+d.pc+'/'+d.pn+'\n\n## Refleksi\n'+RQ.map((q,i)=>(i+1)+'. '+q+'\n   '+(d.rf[i]||'—')).join('\n')+'\n\n## Kesimpulan\n'+(d.ks||'—')+'\n'}
+async function dl(name,data){try{const d=window.claude?await window.claude.use('downloads'):null;
+if(d){await d.save({filename:name,data:data})}else{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data]));a.download=name;a.click()}
+$('rm').textContent='Laporan diunduh.'}catch(e){$('rm').textContent=e&&e.code==='declined'?'Unduhan dibatalkan.':'Unduhan gagal. Coba Salin teks atau Cetak / PDF.'}}
+const fn=()=>'laporan-induksi-'+(V('rn')||'siswa').replace(/[^\w-]+/g,'-');
+$('bDl').onclick=()=>{buildRep();dl(fn()+'.html',fullHTML())};$('bMd').onclick=()=>dl(fn()+'.md',mdText());
+$('bPr').onclick=()=>{buildRep();window.print()};$('bRp').onclick=buildRep;$('bSn').onclick=snapshot;
+$('bCp').onclick=async()=>{const t=mdText();try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(_){}a.remove()}$('rm').textContent='Teks laporan disalin. Jika gagal, gunakan tombol Unduh.'};
+$('bCl').onclick=()=>{if(!cf){cf=1;$('bCl').textContent='⚠ Klik lagi untuk menghapus';setTimeout(()=>{cf=0;$('bCl').textContent='🗑 Hapus semua isian'},4000);return}
+cf=0;$('bCl').textContent='🗑 Hapus semua isian';RF.forEach(i=>$(i).value='');document.querySelectorAll('#te textarea').forEach(t=>t.value='');rows=[];SN=null;$('snt').textContent='';pc=0;pn=0;quiz();rend();prend('');buildRep();try{localStorage.removeItem(KEY)}catch(e){}lastS='';$('rm').textContent='Semua isian dihapus.'};
+function snapState(){return JSON.stringify({f:RF.map(V),rows:rows,ua:UA,pc:pc,pn:pn,sn:SN,rf:[...document.querySelectorAll('#te textarea')].map(t=>t.value)})}
+function autosave(){try{const s=snapState();if(s!==lastS){localStorage.setItem(KEY,s);lastS=s;$('rm').textContent='Tersimpan otomatis di perangkat ini ('+new Date().toLocaleTimeString('id-ID')+').'}}catch(e){$('rm').textContent='Penyimpanan otomatis tidak tersedia; gunakan tombol Unduh.'}}
+function loadAll(){try{const o=JSON.parse(localStorage.getItem(KEY)||'null');if(!o)return;RF.forEach((i,k)=>$(i).value=o.f[k]||'');rows=o.rows||[];pc=o.pc||0;pn=o.pn||0;SN=o.sn||null;
+(o.ua||[]).forEach((u,i)=>{if(u!=null)document.querySelectorAll('#qz .q')[i].querySelectorAll('button')[u].click()});
+document.querySelectorAll('#te textarea').forEach((t,i)=>t.value=(o.rf||[])[i]||'');lastS=snapState()}catch(e){}}
+$('nav').addEventListener('click',e=>{if(e.target.dataset.t==='f')buildRep()});
+let plog=[],clog=[],hist=[],tab='a',loading=false;
+const AN=['Kanan (ε > 0)','Kiri (ε < 0)','Tidak menyimpang'];
+const tm=t=>new Date(t).toLocaleString('id-ID',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+function logEv(x){if(loading)return;hist.unshift({t:Date.now(),x:x});if(hist.length>40)hist.pop()}
+function sv(){clearTimeout(sv.t);sv.t=setTimeout(autosave,300)}
+function menu(arr,i,after,rep){const s=document.createElement('select');s.innerHTML='<option value="">Pilih aksi…</option>'+(rep?'<option value="r">↻ Ulangi di simulasi</option>':'')+'<option value="d">🗑 Hapus baris ini</option>';
+s.onchange=()=>{const v=s.value;s.value='';if(v==='d'){arr.splice(i,1);logEv('Menghapus data baris ke-'+(i+1));after();sv()}else if(v==='r'&&rep)rep(arr[i])};return s}
+function rp(r){Object.assign(S,{N:r.n,v:r.sp,pol:r.pol,z:-10,dir:1,mv:true,pa:false,pk:0,pks:0,ex:String(r.v).split(',')[0]});S.phi=phi(S.z);sync();scrollTo({top:0,behavior:'smooth'})}
+function rend(){const b=$('tbd');b.innerHTML='';rows.forEach((r,i)=>{const tr=document.createElement('tr');
+tr.innerHTML='<td>'+(i+1)+'</td><td>'+esc(r.v)+'</td><td><input></td><td>'+esc(r.o)+'</td><td>'+esc(r.b)+'</td><td>'+esc(r.a)+'</td><td><input></td><td></td>';
+const ins=tr.querySelectorAll('input');ins[0].value=r.p;ins[1].value=r.k;ins[0].placeholder='mis. ε besar';ins[1].placeholder='Tulis kesimpulan';ins[0].oninput=e=>{r.p=e.target.value};ins[1].oninput=e=>{r.k=e.target.value};
+tr.lastChild.appendChild(menu(rows,i,rend,r.n?rp:0));b.appendChild(tr)});prog()}
+function gtab(id,arr,heads,cell){const el=$(id);if(!arr.length){el.innerHTML='';return}
+el.innerHTML='<table style="min-width:440px"><thead><tr><th>No</th>'+heads.map(h=>'<th>'+h+'</th>').join('')+'<th>Aksi</th></tr></thead><tbody></tbody></table>';
+const b=el.querySelector('tbody');arr.forEach((r,i)=>{const tr=document.createElement('tr');tr.innerHTML='<td>'+(i+1)+'</td>'+cell(r).map(c=>'<td>'+esc(c)+'</td>').join('')+'<td></td>';tr.lastChild.appendChild(menu(arr,i,gall,0));b.appendChild(tr)})}
+function gall(){pc=plog.filter(r=>r.ok).length;pn=plog.length;if($('psc'))$('psc').textContent='Skor: '+pc+'/'+pn;
+gtab('ptb',plog,['Soal prediksi','Jawabanmu','Hasil simulasi','Status'],r=>[r.s,r.a,r.k,r.ok?'✅ Benar':'❌ Salah']);
+gtab('ctb',clog,['N','ΔΦ (mWb)','Δt (s)','ε'],r=>[r.n,r.df,r.dt,r.e]);prog()}
+function newPq(){pq={p:Math.random()<.5?1:-1,ap:Math.random()<.5};prend('')}
+function prend(res){const q=pq,pole=q.p>0?'utara':'selatan';
+$('pr').innerHTML='<b>🎯 Uji Prediksi</b> <span class="note" id="psc">Skor: '+pc+'/'+pn+'</span><br>Kutub <b>'+pole+'</b> magnet '+(q.ap?'didekatkan ke':'dijauhkan dari')+' kumparan. Ke mana jarum galvanometer menyimpang?<div class="row"><button>Kanan (ε &gt; 0)</button><button>Kiri (ε &lt; 0)</button><button>Tidak menyimpang</button></div>'+(res?'<div class="ex">'+res+'<br><button id="pnx">Soal baru</button></div>':'');
+if(res){$('pnx').onclick=newPq;return}
+document.querySelectorAll('#pr .row button').forEach((b,i)=>b.onclick=()=>{const ex=q.ap?-q.p:q.p,ok=[1,-1,0][i]===ex;
+plog.push({s:'Kutub '+pole+(q.ap?' didekatkan':' dijauhkan'),a:AN[i],k:AN[ex>0?0:1],ok:ok});logEv('Menjawab uji prediksi ke-'+plog.length+(ok?' (benar)':' (salah)'));
+Object.assign(S,{pol:q.p,v:6,N:100,dir:q.ap?1:-1,z:q.ap?-10:-5,mv:true,pa:false,pk:0,pks:0,ex:'Uji prediksi'});S.phi=phi(S.z);sync();mark(-1);gall();
+const opp=q.p>0?'selatan':'utara';
+prend((ok?'✅ Benar. ':'❌ Belum tepat. ')+(q.ap?'Fluks membesar, kumparan melawan dengan menolak magnet: ujung kiri menjadi kutub '+pole+'.':'Fluks mengecil, kumparan melawan dengan menarik magnet: ujung kiri menjadi kutub '+opp+'.')+' Medan induksi itu dihasilkan arus '+(ex>0?'searah':'berlawanan')+' jarum jam, sehingga jarum menyimpang ke '+(ex>0?'kanan':'kiri')+'. Lihat simulasi di atas!')})}
+$('kc').querySelector('.row').insertAdjacentHTML('beforeend','<button id="kS">💾 Simpan ke tabel</button>');
+$('kS').onclick=()=>{const n=+V('kn'),df=+V('kf'),dt=+V('kt');if(!dt)return;clog.push({n:n,df:df,dt:dt,e:f(-n*df/1000/dt,3)+' V'});logEv('Menyimpan hasil kalkulator Faraday');gall()};
+document.querySelector('#tb .note').insertAdjacentText('beforeend',' Setelah dicatat, nilai puncak direset untuk percobaan berikutnya. Tombol "Catat ke tabel data" di dekat simulasi melakukan hal yang sama, termasuk untuk mode seret.');
+$('bAdd').addEventListener('click',()=>{const r=rows[rows.length-1];if(!r||r.n)return;r.n=S.N;r.sp=S.v;r.pol=S.pol;S.pk=0;S.pks=0;logEv('Mencatat data percobaan ke-'+rows.length);rend()});
+$('bRec').onclick=()=>$('bAdd').click();
+$('bSn').addEventListener('click',()=>logEv('Menyimpan gambar grafik ke laporan'));
+const tH=(h,a)=>'<table><thead><tr><th>No</th>'+h.map(x=>'<th>'+x+'</th>').join('')+'</tr></thead><tbody>'+(a.length?a.map((r,i)=>'<tr><td>'+(i+1)+'</td>'+r.map(c=>'<td>'+esc(c)+'</td>').join('')+'</tr>').join(''):'<tr><td colspan="'+(h.length+1)+'">Belum ada data.</td></tr>')+'</tbody></table>';
+function tbl(d){return tH(['Variabel yang diubah','Prediksi','Hasil pengamatan','Besar GGL','Arah GGL','Kesimpulan'],d.rows.map(r=>[r.v,r.p,r.o,r.b,r.a,r.k]))}
+function ptH(d){return tH(['Soal prediksi','Jawabanmu','Hasil simulasi','Status'],d.pl.map(r=>[r.s,r.a,r.k,r.ok?'Benar':'Salah']))}
+function ctH(d){return tH(['N','ΔΦ (mWb)','Δt (s)','ε'],d.cl.map(r=>[r.n,r.df,r.dt,r.e]))}
+function qrows(){return Q.map((q,i)=>{const u=UA[i];return {t:q[0],u:u==null?'(belum dijawab)':String.fromCharCode(65+u)+'. '+q[1][u],ok:u===q[2],k:String.fromCharCode(65+q[2])+'. '+q[1][q[2]],x:q[3]}})}
+function qhtml(d){return '<p>Skor Tantangan HOTS: <b>'+d.sc+' / 100</b> ('+d.ans+' dari '+Q.length+' soal dijawab). Skor Uji Prediksi: <b>'+d.pc+' / '+d.pn+'</b>.</p><ol>'+d.q.map(r=>{const na=r.u.charAt(0)==='(';return '<li>'+esc(r.t)+'<br>Jawabanmu: '+esc(r.u)+(na?'':(r.ok?' ✅':' ❌ kunci: '+esc(r.k))+'<br><span class="note">Pembahasan: '+esc(r.x)+'</span>')+'</li>'}).join('')+'</ol>'}
+function items(d){return [['Identitas (nama dan kelas) terisi',!!(d.nm.trim()&&d.kl.trim())],['Data eksperimen minimal 6 baris',d.rows.length>=6],['Uji prediksi minimal 3 soal',d.pl.length>=3],['Kalkulator Faraday dipakai minimal 1 kali',d.cl.length>=1],['Gambar grafik tersimpan',!!d.sn],['Hipotesis dan 3 analisis terisi',[d.h,d.a1,d.a2,d.a3].every(x=>x.trim())],['Tantangan HOTS dijawab semua',d.ans===Q.length],['4 pertanyaan refleksi terisi',d.rf.length===4&&d.rf.every(x=>x.trim())],['Kesimpulan terisi',!!d.ks.trim()]]}
+function chk(d){return '<ul style="list-style:none;padding-left:0">'+items(d).map(i=>'<li>'+(i[1]?'✅ ':'⬜ ')+i[0]+'</li>').join('')+'</ul>'}
+function hhtml(d){return d.hi.length?'<ul>'+d.hi.map(h=>'<li>'+tm(h.t)+' — '+esc(h.x)+'</li>').join('')+'</ul>':'<p class="note">Belum ada aktivitas tercatat.</p>'}
+function rdata(){return {nm:V('rn'),kl:V('rk'),kp:V('rg'),tg:V('rd'),h:V('ra0'),a1:V('ra1'),a2:V('ra2'),a3:V('ra3'),ks:V('ra4'),rows:rows,pl:plog,cl:clog,q:qrows(),sc:Math.round(sc*100/Q.length),ans:ans,pc:pc,pn:pn,sn:SN,hi:hist,rf:[...document.querySelectorAll('#te textarea')].map(t=>t.value)}}
+function prog(){try{const it=items(rdata()),n=it.filter(x=>x[1]).length;$('pgb').style.width=n/it.length*100+'%';$('pgt').textContent='Kemajuan pengerjaan: '+n+' dari '+it.length+' bagian selesai (rincian di tab Laporan)'}catch(e){}}
+function idl(d){return 'Nama: <b>'+esc(d.nm||'—')+'</b> · Kelas: <b>'+esc(d.kl||'—')+'</b> · Kelompok: <b>'+esc(d.kp||'—')+'</b> · Tanggal: <b>'+esc(d.tg||'—')+'</b>'}
+function buildRep(){const d=rdata();$('rid').innerHTML=idl(d);$('rc').innerHTML=chk(d);$('rt').innerHTML=tbl(d);$('rs').innerHTML=shtml(d);$('rpt').innerHTML=ptH(d);$('rct').innerHTML=ctH(d);$('rq').innerHTML=qhtml(d);$('rf').innerHTML=fhtml(d);$('rh').innerHTML=hhtml(d)}
+function fullHTML(){const d=rdata(),P=x=>'<p>'+br(x)+'</p>';return '<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Laporan Induksi Elektromagnetik - '+esc(d.nm)+'</title><style>body{font:15px/1.55 system-ui,sans-serif;max-width:820px;margin:20px auto;padding:0 14px;color:#111}table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}th,td{border:1px solid #999;padding:4px;vertical-align:top}th{background:#e5edff}img{max-width:100%;background:#0f172a;margin:4px 0}h1{font-size:22px}h3{border-bottom:1px solid #999}.note{color:#555;font-size:13px}</style></head><body><h1>Laporan Praktikum Virtual: Induksi Elektromagnetik</h1><p>'+idl(d)+'</p><h3>Kelengkapan Pengerjaan</h3>'+chk(d)+'<h3>A. Tujuan Pembelajaran</h3><ol>'+T.map(t=>'<li>'+t+'</li>').join('')+'</ol><h3>B. Dasar Teori</h3>'+THEORY+'<h3>C. Hipotesis</h3>'+P(d.h)+'<h3>D. Model Simulasi</h3>'+MODEL+'<h3>E. Data Hasil Eksperimen</h3>'+tbl(d)+shtml(d)+'<h3>E2. Tabel Uji Prediksi</h3>'+ptH(d)+'<h3>E3. Tabel Kalkulator Faraday</h3>'+ctH(d)+'<h3>F. Analisis Data</h3><p><b>Pengaruh kecepatan magnet:</b><br>'+br(d.a1)+'</p><p><b>Pengaruh jumlah lilitan:</b><br>'+br(d.a2)+'</p><p><b>Arah arus induksi dan Hukum Lenz:</b><br>'+br(d.a3)+'</p><h3>G. Hasil Uji Prediksi dan Tantangan HOTS</h3>'+qhtml(d)+'<h3>H. Jawaban Refleksi</h3>'+fhtml(d)+'<h3>I. Kesimpulan</h3>'+P(d.ks)+'<h3>J. Riwayat Pengerjaan</h3>'+hhtml(d)+'</body></html>'}
+function mdText(){const d=rdata(),m=a=>a.map((r,i)=>'| '+(i+1)+' | '+r.join(' | ')+' |').join('\n');return '# Laporan Praktikum Virtual: Induksi Elektromagnetik\n\nNama: '+d.nm+' | Kelas: '+d.kl+' | Kelompok: '+d.kp+' | Tanggal: '+d.tg+'\n\n## Kelengkapan\n'+items(d).map(i=>'- ['+(i[1]?'x':' ')+'] '+i[0]).join('\n')+'\n\n## Hipotesis\n'+(d.h||'—')+'\n\n## Data Eksperimen\n| No | Variabel | Prediksi | Pengamatan | Besar GGL | Arah | Kesimpulan |\n|---|---|---|---|---|---|---|\n'+m(d.rows.map(r=>[r.v,r.p,r.o,r.b,r.a,r.k]))+'\n\n## Uji Prediksi ('+d.pc+'/'+d.pn+')\n| No | Soal | Jawaban | Hasil | Status |\n|---|---|---|---|---|\n'+m(d.pl.map(r=>[r.s,r.a,r.k,r.ok?'Benar':'Salah']))+'\n\n## Kalkulator Faraday\n| No | N | ΔΦ (mWb) | Δt (s) | ε |\n|---|---|---|---|---|\n'+m(d.cl.map(r=>[r.n,r.df,r.dt,r.e]))+'\n\n## Analisis\n- Kecepatan magnet: '+(d.a1||'—')+'\n- Jumlah lilitan: '+(d.a2||'—')+'\n- Arah arus (Lenz): '+(d.a3||'—')+'\n\n## Tantangan HOTS: '+d.sc+'/100\n'+d.q.map((r,i)=>(i+1)+'. '+r.u+(r.ok?' (benar)':' (kunci: '+r.k+')')).join('\n')+'\n\n## Refleksi\n'+RQ.map((q,i)=>(i+1)+'. '+q+'\n   '+(d.rf[i]||'—')).join('\n')+'\n\n## Kesimpulan\n'+(d.ks||'—')+'\n'}
+function snapState(){return JSON.stringify({f:RF.map(V),rows:rows,ua:UA,sn:SN,pl:plog,cl:clog,hi:hist,tab:tab,sim:{N:S.N,v:S.v,pol:S.pol},kc:['kn','kf','kt'].map(V),rf:[...document.querySelectorAll('#te textarea')].map(t=>t.value)})}
+function autosave(){try{const s=snapState();if(s!==lastS){localStorage.setItem(KEY,s);lastS=s;localStorage.setItem(KEY+'t',Date.now())}const t=+localStorage.getItem(KEY+'t');const m=t?'💾 Tersimpan otomatis di perangkat ini (terakhir '+tm(t)+'). Jika browser ditutup lalu dibuka lagi, pekerjaanmu tetap ada.':'';$('sv2').textContent=m;$('rm').textContent=m}catch(e){$('sv2').textContent='⚠ Penyimpanan otomatis tidak tersedia (mungkin mode privat). Unduh laporan agar pekerjaan tidak hilang.'}prog()}
+function loadAll(){loading=true;try{const o=JSON.parse(localStorage.getItem(KEY)||'null');if(o){
+RF.forEach((i,k)=>$(i).value=(o.f||[])[k]||'');rows=o.rows||[];plog=o.pl||[];clog=o.cl||[];hist=o.hi||[];SN=o.sn||null;gall();
+(o.ua||[]).forEach((u,i)=>{if(u!=null)document.querySelectorAll('#qz .q')[i].querySelectorAll('button')[u].click()});
+document.querySelectorAll('#te textarea').forEach((t,i)=>t.value=(o.rf||[])[i]||'');
+if(o.sim){S.N=o.sim.N;S.v=o.sim.v;S.pol=o.sim.pol;S.phi=phi(S.z);sync()}
+(o.kc||[]).forEach((x,i)=>$(['kn','kf','kt'][i]).value=x);calc();
+if(o.sn)$('snt').textContent='Gambar tersimpan di laporan ✔';
+const b=[...document.querySelectorAll('#nav button')].find(b=>b.dataset.t===o.tab);if(b&&o.tab!=='a')b.click();
+lastS=snapState()}}catch(e){}finally{loading=false}}
+$('bCl').onclick=()=>{if(!cf){cf=1;$('bCl').textContent='⚠ Klik lagi untuk menghapus';setTimeout(()=>{cf=0;$('bCl').textContent='🗑 Hapus semua isian'},4000);return}
+cf=0;$('bCl').textContent='🗑 Hapus semua isian';RF.forEach(i=>$(i).value='');document.querySelectorAll('#te textarea').forEach(t=>t.value='');rows=[];plog=[];clog=[];hist=[];SN=null;$('snt').textContent='';quiz();rend();gall();prend('');buildRep();try{localStorage.removeItem(KEY);localStorage.removeItem(KEY+'t')}catch(e){}lastS='';$('rm').textContent='Semua isian dihapus.';$('sv2').textContent=''};
+$('nav').addEventListener('click',e=>{if(e.target.dataset.t)tab=e.target.dataset.t});
+document.addEventListener('input',sv);document.addEventListener('change',sv);
+document.addEventListener('click',e=>{const m=e.target.closest&&e.target.closest('#qz .q');if(m&&e.target.tagName==='BUTTON')logEv('Menjawab soal Tantangan HOTS no. '+([...$('qz').querySelectorAll('.q')].indexOf(m)+1));sv()});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)autosave()});addEventListener('pagehide',autosave);
+sync();quiz();loadAll();rend();gall();prend('');if(!V('rd'))$('rd').valueAsDate=new Date();buildRep();prog();autosave();requestAnimationFrame(loop);setInterval(autosave,3000);
+</script></body></html>

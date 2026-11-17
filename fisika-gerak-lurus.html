@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Laboratorium Digital Fisika: Menjelajahi Gerak Lurus</title>
+<style>
+:root{--g:#8aa88a;--gd:#3f6a4a;--b:#e0f0f9;--bd:#2a78a8;--y:#f5c542;--t:#1d2b27;--bg:#f2f8f4}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.6 "Trebuchet MS","Segoe UI",Roboto,sans-serif;color:var(--t);background:linear-gradient(#dfeae3 1px,transparent 1px) 0 0/28px 28px,linear-gradient(90deg,#dfeae3 1px,transparent 1px) 0 0/28px 28px,var(--bg)}
+header{background:linear-gradient(100deg,#3f6a4a,#4f8a73 55%,#2a78a8);color:#fff;padding:10px 16px 8px;position:sticky;top:0;z-index:5;border-radius:0 0 18px 18px;box-shadow:0 6px 18px -8px #1d3d3099}
+header b{font-size:1.08rem;letter-spacing:.2px}
+nav{display:flex;gap:6px;overflow-x:auto;padding:8px 0 2px;scrollbar-width:none}
+nav button{white-space:nowrap;background:#ffffff26;color:#fff;border:1px solid #ffffff3d;border-radius:18px;padding:5px 13px;cursor:pointer;font:inherit;font-size:.88rem;transition:background .2s}
+nav button:hover{background:#ffffff47}nav button.on{background:var(--y);color:#2d2500;border-color:var(--y);font-weight:700}
+#pb{height:6px;background:#ffffff40;border-radius:3px;margin-top:8px}#pb i{display:block;height:100%;width:0;background:var(--y);border-radius:3px;transition:width .5s}
+main{max-width:1000px;margin:0 auto;padding:14px}
+section{display:none}section.on{display:block}
+.c{background:#fff;border-radius:18px;padding:14px 18px;margin:14px 0;border:1px solid #d3e4d9;box-shadow:0 8px 20px -14px #2a5a3f99}
+h2{color:var(--gd);font-size:1.6rem;line-height:1.25;margin:.5em 0}h2::after{content:"";display:block;width:58px;height:5px;border-radius:3px;background:var(--y);margin-top:6px}
+h3{margin:.2em 0 .5em;color:var(--bd);font-size:1.12rem}h4{margin:.9em 0 .3em;color:var(--gd)}
+.mat{counter-reset:st}.mat .c h3::before{counter-increment:st;content:counter(st);display:inline-grid;place-items:center;width:28px;height:28px;margin-right:9px;border-radius:50%;background:var(--y);color:#3a2f00;font-size:.88rem;font-weight:700}
+button.p,button.s,button.y{border:0;border-radius:12px;padding:8px 15px;cursor:pointer;font:inherit;margin:3px;transition:transform .12s,box-shadow .12s}
+button.p{background:linear-gradient(#528560,#3f6a4a);color:#fff;box-shadow:0 3px 0 #2c4d34}button.s{background:var(--b);color:#1f5c82;box-shadow:0 3px 0 #b5d6e8}button.y{background:var(--y);color:#2d2500;box-shadow:0 3px 0 #c99e1c}
+button.p:hover,button.s:hover,button.y:hover{transform:translateY(-1px)}button.p:active,button.s:active,button.y:active{transform:translateY(2px);box-shadow:none}button:disabled{opacity:.4;pointer-events:none}
+input,select,textarea{font:inherit;padding:7px 9px;border:1.5px solid #b9cbc2;border-radius:10px;max-width:100%;background:#fff}input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid #a9d6ef;border-color:var(--bd)}textarea{width:100%;min-height:58px}
+input[type=range]{width:100%;accent-color:var(--bd);padding:0}
+label{display:block}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:.92rem;border:1px solid #cfdcd5;border-radius:12px;overflow:hidden}td,th{border-bottom:1px solid #e1ebe5;padding:5px;text-align:center}th{background:linear-gradient(#e9f5fc,#d5eaf6);color:#1f5c82}tr:nth-child(even) td{background:#f7fbf8}td input{width:86px}
+input.ok{background:#d9f5de;border-color:#5aa86a}input.no{background:#fde0e0;border-color:#d46a6a}
+canvas{width:100%;background:#fbfffd;border:1px solid #cfdcd5;border-radius:14px;box-shadow:inset 0 0 0 3px #fff}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.ind{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.ind div{background:#f3faff;border:1px solid #bcdcee;color:#1f5c82;padding:5px 12px;border-radius:12px;font-weight:700;font-variant-numeric:tabular-nums}
+.f{font-family:Cambria,Georgia,serif;font-style:italic;background:#fff6cf;border:1px dashed #e0b72e;padding:3px 11px;border-radius:9px;display:inline-block;margin:3px}
+.fb{margin:6px 0;font-weight:700}
+.opt{display:block;margin:5px 0;padding:9px 12px;border:1.5px solid #cfdcd5;border-radius:12px;cursor:pointer;transition:border-color .15s,background .15s}.opt:hover{border-color:var(--bd)}.opt.sel{background:var(--b);border-color:var(--bd)}.opt.ok{background:#d9f5de;border-color:#5aa86a}.opt.no{background:#fde0e0;border-color:#d46a6a}
+.hero{padding:0;overflow:hidden}.hero svg{display:block;width:100%;height:auto}.hb{padding:2px 22px 20px}
+.pills span{display:inline-block;background:var(--b);color:#1f5c82;border-radius:14px;padding:3px 12px;margin:2px 4px 2px 0;font-size:.88rem}
+.mv{animation:mv 9s linear infinite}@keyframes mv{from{transform:translateX(-140px)}to{transform:translateX(900px)}}
+.wl{transform-box:fill-box;transform-origin:50% 50%;animation:sp .5s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.mv,.wl{animation:none}.mv{transform:translateX(320px)}}
+@media print{header,button,.nb{display:none!important}section{display:none!important}#s-rep{display:block!important}body{background:#fff}.c{box-shadow:none}}
+</style></head><body>
+<header><b>🔬 Laboratorium Digital Fisika</b> <small id="who"></small><nav id="nav"></nav><div id="pb"><i></i></div></header>
+<main>
+<section id="s-home" class="on">
+<div class="c hero"><svg viewBox="0 0 800 220" role="img" aria-label="Sepeda motor melaju di jalan desa dekat sawah dan pohon kelapa"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bfe2f5"/><stop offset="1" stop-color="#f4fbff"/></linearGradient>
+<g id="pm"><path d="M0 0Q8-34-2-68" stroke="#6b4f2a" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M-2-68q-26-4-42 10M-2-68q-12-22-36-20M-2-68q14-22 38-14M-2-68q28 2 40 18" stroke="#3f7a46" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="-2" cy="-64" r="4" fill="#8a6a2f"/></g></defs>
+<rect width="800" height="220" fill="url(#sk)"/><circle cx="700" cy="50" r="26" fill="#f5c542"/>
+<path d="M0 150Q120 70 260 135T520 120T800 140V176H0Z" fill="#b9d3b5"/><path d="M0 162Q160 112 330 150T640 142T800 156V176H0Z" fill="#9fc29b"/>
+<use href="#pm" x="110" y="172"/><use href="#pm" x="610" y="172"/><use href="#pm" x="680" y="172"/>
+<rect y="172" width="800" height="48" fill="#8f9c95"/><path d="M0 198H800" stroke="#fff" stroke-width="3" stroke-dasharray="22 16"/>
+<g class="mv"><g transform="translate(0,210) scale(1.5)"><g class="wl"><circle cx="-24" cy="-13" r="13" fill="none" stroke="#222" stroke-width="3.5"/><path d="M-37-13h26M-24-26v26M-33-22l18 18M-15-22l-18 18" stroke="#222" stroke-width="1.2"/></g><g class="wl"><circle cx="24" cy="-13" r="13" fill="none" stroke="#222" stroke-width="3.5"/><path d="M11-13h26M24-26v26M15-22l18 18M33-22l-18 18" stroke="#222" stroke-width="1.2"/></g>
+<path d="M-26-14L-18-30H2L10-24L20-27L24-14H8L0-19Z" fill="#2a78a8"/><path d="M20-28L24-13M16-38L21-29" stroke="#333" stroke-width="3" stroke-linecap="round"/><rect x="-19" y="-34" width="19" height="5" fill="#222"/><circle cx="25" cy="-29" r="3.5" fill="#f5c542"/>
+<g stroke="#456c4c" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M-9-34L-3-52" stroke-width="6"/><path d="M-3-50L16-39" stroke-width="4"/><path d="M-9-33L4-25L6-14" stroke-width="5"/></g><circle cx="0" cy="-59" r="6.5" fill="#f5c542"/></g></g></svg>
+<div class="hb"><h2>LABORATORIUM DIGITAL FISIKA: MENJELAJAHI GERAK LURUS</h2><p class="pills"><span>Fisika Fase E · Kelas X</span><span>Simulasi interaktif</span><span>Isi data sendiri</span><span>Grafik otomatis</span></p>
+<p><input id="nm" placeholder="Nama murid"> <input id="kl" placeholder="Kelas (mis. X.1)" size="12"></p>
+<button class="p" onclick="start()">MULAI BELAJAR</button></div></div>
+<div class="c"><h3>Petunjuk penggunaan</h3><ol><li>Isi nama dan kelas, lalu tekan MULAI BELAJAR.</li><li>Ikuti Peta Pembelajaran secara berurutan: tiap materi punya simulasi, percobaan, tabel, analisis, dan latihan.</li><li>Jalankan simulasi, ubah parameternya, amati, lalu isi tabel sendiri. Tombol PERIKSA DATA memberi umpan balik.</li><li>Jawabanmu tersimpan otomatis di browser ini. Laporan bisa dicetak dari menu Laporan.</li></ol></div></section>
+<section id="s-map"></section><section id="s-m1"></section><section id="s-m2"></section><section id="s-m3"></section><section id="s-m4"></section><section id="s-ev"></section><section id="s-ref"></section><section id="s-rep"></section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const E=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S;try{S=JSON.parse(localStorage.lgf)}catch(e){}
+S=S||{name:'',kls:'',done:{},a:{},cmp:{},ev:{i:0,a:[],done:0}};
+const sv=()=>{try{localStorage.lgf=JSON.stringify(S)}catch(e){}},VA=id=>E(S.a[id]),sa=e=>{S.a[e.id]=e.value;sv()};
+const ta=id=>`<textarea id="${id}" placeholder="Tulis jawabanmu di sini..." oninput="sa(this)">${VA(id)}</textarea>`;
+const MN={m1:'Konsep Dasar Gerak',m2:'GLB',m3:'GLBB',m4:'Gerak Vertikal'};
+const NAV=[['home','Beranda'],['map','Peta Pembelajaran'],['m1','Materi 1'],['m2','Materi 2: GLB'],['m3','Materi 3: GLBB'],['m4','Materi 4: Vertikal'],['ev','Evaluasi Akhir'],['ref','Refleksi'],['rep','Laporan']];
+const LV='<option value="">Pilih...<option>Sangat Paham<option>Paham<option>Cukup Paham<option>Belum Paham';
+/* ===== Bank soal ===== */
+const Q=[
+{m:'m1',q:'Rina berangkat dari rumah (x = 0) ke pasar di x = 800 m, lalu berbalik ke sekolah di x = 300 m. Jarak dan perpindahan Rina adalah ...',o:['300 m dan 1.300 m','1.300 m dan 300 m','1.100 m dan 300 m','1.300 m dan 1.300 m','500 m dan 300 m'],a:1,e:'Jarak = 800 + 500 = 1.300 m. Perpindahan = 300 − 0 = 300 m.'},
+{m:'m1',q:'Sepeda motor melaju 1.000 m di jalan Punggasan lalu kembali ke titik awal dalam 200 s. Pernyataan yang benar ...',o:['Kelajuan rata-rata 0 dan kecepatan rata-rata 10 m/s','Kelajuan rata-rata 5 m/s dan kecepatan rata-rata 5 m/s','Keduanya bernilai 10 m/s','Kelajuan rata-rata 10 m/s dan kecepatan rata-rata 0','Keduanya bernilai 0'],a:3,e:'Jarak total 2.000 m sehingga kelajuan = 2.000/200 = 10 m/s. Perpindahan 0 sehingga kecepatan rata-rata 0.'},
+{m:'m2',q:'Mobil pengangkut hasil panen bergerak lurus dengan kecepatan konstan 15 m/s selama 40 s. Jarak tempuhnya ...',o:['55 m','375 m','600 m','6 m','0,375 m'],a:2,e:'s = vt = 15 × 40 = 600 m.'},
+{m:'m2',q:'Tabel posisi motor: t = 0, 2, 4, 6 s → x = 10, 30, 50, 70 m. Kecepatan dan posisi motor pada t = 10 s adalah ...',o:['10 m/s dan 110 m','10 m/s dan 100 m','20 m/s dan 110 m','5 m/s dan 60 m','20 m/s dan 210 m'],a:0,e:'Tiap 2 s posisi bertambah 20 m, jadi v = 10 m/s (GLB). x = 10 + 10 × 10 = 110 m.'},
+{m:'m3',q:'Motor mulai bergerak dari diam dengan percepatan 2 m/s² selama 5 s. Kecepatan akhir dan jarak tempuhnya ...',o:['10 m/s dan 50 m','10 m/s dan 25 m','5 m/s dan 25 m','10 m/s dan 10 m','2,5 m/s dan 25 m'],a:1,e:'v = 0 + 2 × 5 = 10 m/s. s = ½ × 2 × 5² = 25 m.'},
+{m:'m3',q:'Motor bergerak 20 m/s mengerem dengan perlambatan 4 m/s² sampai berhenti. Jarak pengeremannya ...',o:['40 m','80 m','100 m','50 m','5 m'],a:3,e:'v² = v₀² + 2as → 0 = 400 − 8s → s = 50 m.'},
+{m:'m4',q:'Buah mangga jatuh bebas dari ketinggian 5 m (g = 10 m/s²). Waktu jatuh dan kecepatan saat tiba di tanah ...',o:['0,5 s dan 5 m/s','1 s dan 5 m/s','1 s dan 10 m/s','2 s dan 10 m/s','1 s dan 20 m/s'],a:2,e:'h = ½gt² → t = 1 s. v = gt = 10 m/s.'},
+{m:'m4',q:'Bola dilempar vertikal ke atas dengan kecepatan awal 15 m/s (g = 10 m/s²). Di titik tertinggi ...',o:['v = 0 dan a = 0','v = 15 m/s dan a = 10 m/s² ke bawah','v = 0 dan a = 10 m/s² ke atas','v = 10 m/s dan a = 0','v = 0 dan a = 10 m/s² ke bawah'],a:4,e:'Kecepatan sesaat nol, tetapi gravitasi tetap bekerja ke bawah sebesar g. Tinggi maksimum = 15²/20 = 11,25 m.'}];
+/* ===== Konten materi ===== */
+const CT={
+m1:{t:'Materi 1: Konsep Dasar Gerak',ap:'Seorang pengendara sepeda motor berangkat dari rumah di Punggasan menuju sekolah, melewati persawahan, permukiman, dan jalan raya.',pq:['Bagaimana kita tahu pengendara itu bergerak?','Apakah orang yang duduk di dalam mobil bergerak?','Mengapa titik acuan penting?','Apakah jarak dan perpindahan berarti sama?'],g:'Menjelaskan gerak, titik acuan, jarak, perpindahan, kelajuan, kecepatan, dan percepatan.',
+m:'<p><b>Gerak</b> adalah perubahan posisi terhadap <b>titik acuan</b>. Penumpang diam terhadap mobilnya, tetapi bergerak terhadap pohon di tepi jalan. <b>Jarak</b> (m) adalah panjang seluruh lintasan, besaran skalar. <b>Perpindahan</b> (m) adalah perubahan posisi, besaran vektor yang punya arah. <b>Kelajuan</b> skalar dan <b>kecepatan</b> vektor, satuannya m/s. <b>Percepatan</b> (m/s²) adalah perubahan kecepatan tiap satuan waktu.</p><span class="f">s = total panjang lintasan</span><span class="f">Δx = x akhir − x awal</span><span class="f">kelajuan = s / t</span><span class="f">kecepatan = Δx / Δt</span><span class="f">ā = Δv / Δt</span>',
+pc:'Jalankan simulasi, catat koordinat titik A sampai D, lalu hitung sendiri hasilnya dan isi tabel. Tekan PERIKSA DATA.',
+an:['Mengapa jarak tempuh dapat berbeda dengan besar perpindahan?','Kapan jarak dan besar perpindahan bernilai sama?','Jika kendaraan kembali ke titik awal, berapa perpindahannya? Berapa kecepatan rata-ratanya?','Mengapa titik acuan diperlukan?'],
+kp:'Apa yang kamu amati? Apa perbedaan jarak dan perpindahan? Apa hubungan jarak, perpindahan, dan waktu?',
+ex:'<p>Sepeda motor bergerak 600 m ke pasar, lalu kembali 200 m ke arah semula, total 40 s.</p><ol><li>Jarak: s = 600 + 200 = <b>800 m</b></li><li>Perpindahan: Δx = 400 − 0 = <b>400 m</b> (ke arah pasar)</li><li>Kelajuan rata-rata = 800/40 = <b>20 m/s</b></li><li>Kecepatan rata-rata = 400/40 = <b>10 m/s</b></li></ol>'},
+m2:{t:'Materi 2: Gerak Lurus Beraturan (GLB)',ap:'Seorang pengendara melewati jalan lurus di Linggo Sari Baganti. Dalam selang waktu yang sama, kendaraannya menempuh jarak yang sama.',pq:['Apakah kendaraan itu mengalami percepatan?','Bagaimana hubungan jarak dan waktu?','Bagaimana bentuk grafik geraknya?'],g:'Menjelaskan ciri GLB dan menganalisis grafik x-t, v-t, a-t.',
+m:'<p>GLB: lintasan lurus, <b>kecepatan konstan</b>, <b>percepatan nol</b>. Grafik x-t berupa garis lurus (kemiringan = kecepatan). Grafik v-t garis mendatar (luas di bawahnya = perpindahan). Grafik a-t berimpit dengan sumbu waktu.</p><span class="f">x = x₀ + vt</span><span class="f">s = vt</span><span class="f">v = s / t</span>',
+pc:'Atur simulasi dengan x₀ = 0 dan v = 4, 6, 8 m/s. Amati posisi pada t = 0, 2, 4, 6, 8, 10 s (pakai Jeda atau tombol +1 s), lalu isi tabel sendiri. Tabel tidak terisi otomatis.',
+an:['Bagaimana pertambahan posisi setiap 2 s? Apakah selalu sama?','Apa pengaruh kecepatan terhadap jarak tempuh?','Apa hubungan kecepatan dengan kemiringan grafik x-t?','Mengapa percepatan GLB nol?'],
+kp:'Tuliskan karakteristik GLB, hubungan kecepatan dan jarak, serta makna grafiknya.',
+ex:'<p>Mobil bergerak 12 m/s selama 25 s.</p><ol><li>Jarak: s = vt = 12 × 25 = <b>300 m</b></li><li>Posisi akhir (x₀ = 30 m): x = 30 + 300 = <b>330 m</b></li><li>Waktu untuk 600 m: t = s/v = 600/12 = <b>50 s</b></li></ol>'},
+m3:{t:'Materi 3: Gerak Lurus Berubah Beraturan (GLBB)',ap:'Sepeda motor mulai bergerak dari diam dan makin cepat di jalan lurus; kendaraan lain mengerem saat mendekati persimpangan.',pq:['Mengapa kecepatan kendaraan berubah?','Bagaimana mengetahui besar percepatan?','Apa beda GLB dan GLBB?'],g:'Menjelaskan GLBB dipercepat dan diperlambat serta menerapkan persamaannya.',
+m:'<p>GLBB: percepatan <b>konstan</b>. Dipercepat bila arah a searah v; diperlambat bila a berlawanan arah dengan v. Tanda + dan − hanya menyatakan arah. Jika arah gerak dipilih positif, perlambatan berarti a negatif. Namun benda yang bergerak ke arah negatif dengan a negatif justru dipercepat. Grafik v-t berupa garis miring (kemiringan = a, luas = perpindahan bertanda). Grafik x-t berupa kurva (kemiringan = v). Untuk jarak tempuh, hitung luas berdasarkan kelajuan |v|.</p><span class="f">vₜ = v₀ + at</span><span class="f">s = v₀t + ½at²</span><span class="f">vₜ² = v₀² + 2as</span><span class="f">a = (vₜ − v₀)/t</span>',
+pc:'Atur v₀ = 2 m/s, x₀ = 0, waktu 5 s, dan percepatan 1, 2, 3 m/s². Amati kecepatan dan posisi tiap sekon, lalu isi kedua tabel sendiri.',
+an:['Bagaimana perubahan kecepatan pada tiap percobaan? Apakah pertambahannya tiap sekon sama?','Percobaan mana yang perubahan kecepatannya paling besar?','Mengapa grafik x-t GLBB berbentuk kurva?','Apa perbedaan GLBB dipercepat dan diperlambat?'],
+kp:'Tuliskan hubungan percepatan dan perubahan kecepatan, pengaruh percepatan terhadap jarak, dan karakteristik GLBB.',
+ex:'<p>Motor v₀ = 4 m/s dipercepat 2 m/s² selama 6 s.</p><ol><li>Kecepatan akhir: v = 4 + 2 × 6 = <b>16 m/s</b></li><li>Jarak: s = 4 × 6 + ½ × 2 × 6² = 24 + 36 = <b>60 m</b></li><li>Jika a = 3 m/s²: s = 24 + ½ × 3 × 36 = 78 m, bertambah <b>18 m</b> (kecepatan akhir 22 m/s)</li></ol>'},
+m4:{t:'Materi 4: Gerak Vertikal',ap:'Buah kelapa jatuh dari pohon di kebun Linggo Sari Baganti, dan bola dilempar ke atas di lapangan sekolah.',pq:['Mengapa benda yang jatuh makin cepat?','Apakah kecepatan nol di titik tertinggi?','Apakah percepatan juga nol di titik tertinggi?'],g:'Menganalisis jatuh bebas dan gerak vertikal ke atas dengan g = 10 m/s².',
+m:'<p>Gravitasi memberi percepatan g ke bawah (g = 10 m/s² untuk soal latihan). Pada titik tertinggi, kecepatan sesaat nol, tetapi percepatan tetap g ke bawah.</p><p><b>Jatuh bebas:</b> <span class="f">vₜ = gt</span><span class="f">h = ½gt²</span><span class="f">vₜ² = 2gh</span></p><p><b>Vertikal ke atas:</b> <span class="f">vₜ = v₀ − gt</span><span class="f">h = v₀t − ½gt²</span><span class="f">t maks = v₀/g</span><span class="f">h maks = v₀²/2g</span></p>',
+pc:'Pilih Simulasi A dan atur ketinggian 5, 10, 20 m (g = 10). Amati waktu jatuh dan kecepatan tiba. Lalu pilih Simulasi B dengan v₀ = 20 m/s dan amati ketinggian serta kecepatan pada t = 0 sampai 4 s.',
+an:['Bagaimana hubungan ketinggian awal dengan waktu jatuh?','Apa yang terjadi pada kecepatan bola saat bergerak naik?','Mengapa kecepatan nol sesaat di titik tertinggi, padahal percepatannya tidak nol?','Apa persamaan dan perbedaan jatuh bebas dengan gerak vertikal ke atas?'],
+kp:'Tuliskan pengaruh gravitasi, hubungan ketinggian dan waktu, serta perubahan kecepatan benda.',
+ex:'<p>Kelapa jatuh dari 20 m (g = 10): t = √(2h/g) = <b>2 s</b>; v = gt = <b>20 m/s</b>.</p><p>Bola dilempar ke atas 20 m/s: t naik = v₀/g = <b>2 s</b>; h maks = 20²/(2×10) = <b>20 m</b>; v(3 s) = 20 − 10×3 = <b>−10 m/s</b> (tanda minus: bola sedang turun).</p>'}};
+/* ===== Tabel pengamatan ===== */
+const m1p=()=>({p:[0,1,2,3].map(i=>+$('m1p'+i).value),T:Math.max(1,+$('m1T').value)});
+function m1c(){const {p,T}=m1p(),l=[1,2,3].map(i=>Math.abs(p[i]-p[i-1])),s=l[0]+l[1]+l[2],d=p[3]-p[0];return{p,T,l,s,d,sp:s/T,vl:d/T}}
+const TB={
+m1:[{id:'a',title:'Tabel posisi (koordinat pada simulasi)',rl:'Posisi',lab:['Titik awal (A)','Titik B','Titik C','Titik akhir (D)'],heads:['Koordinat x (m)'],rows:[0,1,2,3],f:(r,c,i)=>m1p().p[i],h:'lihat angka A sampai D pada panel simulasi.',nog:1},
+{id:'b',title:'Tabel hasil',rl:'Besaran',lab:['Jarak total (m)','Perpindahan (m)','Waktu tempuh (s)','Kelajuan rata-rata (m/s)','Kecepatan rata-rata (m/s)'],heads:['Hasil'],rows:[0,1,2,3,4],f:(r,c,i)=>{const q=m1c();return[q.s,q.d,q.T,q.sp,q.vl][i]},h:'jarak = jumlah panjang tiap lintasan (positif); perpindahan = x akhir − x awal (bertanda); kelajuan = jarak/waktu; kecepatan = perpindahan/waktu.',nog:1}],
+m2:[{id:'a',title:'Posisi kendaraan (x₀ = 0)',rl:'t (s)',heads:['Percobaan 1 (4 m/s)','Percobaan 2 (6 m/s)','Percobaan 3 (8 m/s)'],rows:[0,2,4,6,8,10],f:(t,c)=>[4,6,8][c]*t,h:'atur kecepatan di simulasi lalu amati posisi pada waktu itu. Ingat x = vt.'}],
+m3:[{id:'a',title:'Kecepatan (v₀ = 2 m/s)',rl:'t (s)',heads:['P1 (a = 1)','P2 (a = 2)','P3 (a = 3)'],rows:[0,1,2,3,4,5],f:(t,c)=>2+(c+1)*t,h:'gunakan v = v₀ + at dengan v₀ = 2 m/s.'},
+{id:'b',title:'Posisi (x₀ = 0)',rl:'t (s)',heads:['P1 (a = 1)','P2 (a = 2)','P3 (a = 3)'],rows:[0,1,2,3,4,5],f:(t,c)=>2*t+.5*(c+1)*t*t,h:'gunakan s = v₀t + ½at² dengan v₀ = 2 m/s.'}],
+m4:[{id:'a',title:'Jatuh bebas (g = 10 m/s²)',rl:'h (m)',heads:['Waktu jatuh (s)','Kecepatan tiba (m/s)'],rows:[5,10,20],f:(h,c)=>c?Math.sqrt(20*h):Math.sqrt(h/5),h:'t = √(2h/g) dan v = gt.'},
+{id:'b',title:'Vertikal ke atas (v₀ = 20 m/s, g = 10 m/s²)',rl:'t (s)',heads:['Ketinggian (m)','Kecepatan (m/s)'],rows:[0,1,2,3,4],f:(t,c)=>c?20-10*t:20*t-5*t*t,h:'y = v₀t − ½gt² dan v = v₀ − gt. Tanda negatif berarti benda bergerak turun.'}]};
+const COL=['#2a78a8','#d8861b','#46704c'],cell=(k,id,r,c)=>`${k}_${id}_${r}_${c}`;
+function tbls(k){return TB[k].map(s=>`<h4>${s.title}</h4><div style="overflow-x:auto"><table><tr><th>${s.rl}</th>${s.heads.map(h=>`<th>${h}</th>`).join('')}</tr>${s.rows.map((r,i)=>`<tr><td>${s.lab?s.lab[i]:r}</td>${s.heads.map((h,c)=>`<td><input type="number" step="any" id="${cell(k,s.id,i,c)}" value="${VA(cell(k,s.id,i,c))}" oninput="sa(this);this.className=''"></td>`).join('')}</tr>`).join('')}</table></div><p><button class="p" onclick="chk('${k}','${s.id}')">PERIKSA DATA</button><button class="s" onclick="clr('${k}','${s.id}')">Hapus isian</button>${s.nog?'':`<button class="s" onclick="gd('${k}','${s.id}')">Grafik dari data saya</button>`}</p><div class="fb" id="${k}_${s.id}_fb"></div>${s.nog?'':`<canvas id="${k}_${s.id}_cv" width="600" height="220" style="display:none"></canvas>`}`).join('')}
+function chk(k,id){const s=TB[k].find(q=>q.id==id);let ok=0,n=0,bad=[];s.rows.forEach((r,i)=>s.heads.forEach((h,c)=>{n++;const e=$(cell(k,id,i,c)),v=e.value,ans=s.f(r,c,i),good=v!==''&&Math.abs(+v-ans)<=Math.max(.06,.02*Math.abs(ans));e.className=v===''?'':good?'ok':'no';if(good)ok++;else bad.push(`${s.lab?s.lab[i]:s.rl+' '+r} / ${h}${v===''?' (kosong)':''}`)}));
+$(`${k}_${id}_fb`).innerHTML=ok==n?'✅ Semua data benar. Kerja bagus!':`⚠️ ${ok} dari ${n} isian benar. Cek: ${bad.slice(0,4).join('; ')}${bad.length>4?' ...':''}. Petunjuk: ${s.h}`}
+function clr(k,id){const s=TB[k].find(q=>q.id==id);s.rows.forEach((r,i)=>s.heads.forEach((h,c)=>{const e=$(cell(k,id,i,c));e.value='';e.className='';delete S.a[e.id]}));sv();$(`${k}_${id}_fb`).textContent=''}
+function gd(k,id){const s=TB[k].find(q=>q.id==id),cv=$(`${k}_${id}_cv`),ser=s.heads.map((h,c)=>s.rows.map((r,i)=>[r,$(cell(k,id,i,c)).value]).filter(q=>q[1]!=='').map(q=>[q[0],+q[1]])),all=[].concat(...ser);
+if(!all.length){$(`${k}_${id}_fb`).textContent='Isi tabel dulu, lalu tekan tombol grafik.';return}
+cv.style.display='block';const ys=all.map(q=>q[1]),A=ax(cv,Math.min(...s.rows),Math.max(...s.rows),Math.min(0,...ys),Math.max(0,...ys)*1.1,s.rl,'nilai'),c=A.c;
+ser.forEach((q,j)=>{c.strokeStyle=c.fillStyle=COL[j];c.lineWidth=2;c.beginPath();q.forEach((p,i)=>i?c.lineTo(A.X(p[0]),A.Y(p[1])):c.moveTo(A.X(p[0]),A.Y(p[1])));c.stroke();q.forEach(p=>{c.beginPath();c.arc(A.X(p[0]),A.Y(p[1]),4,0,7);c.fill()});c.fillText('● '+s.heads[j],60+j*170,12)})}
+/* ===== Grafik ===== */
+function ax(cv,x0,x1,y0,y1,xl,yl){const c=cv.getContext('2d'),W=cv.width,H=cv.height,L=46,B=26,R=10,Tp=18;c.clearRect(0,0,W,H);if(y1<=y0){y1=y0+1}if(x1<=x0)x1=x0+1;
+const X=x=>L+(x-x0)/(x1-x0)*(W-L-R),Y=y=>H-B-(y-y0)/(y1-y0)*(H-B-Tp);c.strokeStyle='#dde8e2';c.fillStyle='#555';c.font='11px sans-serif';c.lineWidth=1;
+for(let i=0;i<=4;i++){const yy=y0+(y1-y0)*i/4,xx=x0+(x1-x0)*i/4;c.beginPath();c.moveTo(L,Y(yy));c.lineTo(W-R,Y(yy));c.moveTo(X(xx),Tp);c.lineTo(X(xx),H-B);c.stroke();c.fillText(+yy.toFixed(1),2,Y(yy)+4);c.fillText(+xx.toFixed(1),X(xx)-8,H-B+13)}
+c.fillText(yl,L+4,12);c.fillText(xl,W-52,H-2);if(y0<0&&y1>0){c.strokeStyle='#888';c.beginPath();c.moveTo(L,Y(0));c.lineTo(W-R,Y(0));c.stroke()}return{c,X,Y}}
+function curve(A,f,T,col,dash){const c=A.c;c.strokeStyle=col;c.lineWidth=2.5;c.setLineDash(dash?[6,4]:[]);c.beginPath();for(let i=0;i<=100;i++){const t=T*i/100;i?c.lineTo(A.X(t),A.Y(f(t))):c.moveTo(A.X(t),A.Y(f(t)))}c.stroke();c.setLineDash([])}
+function graphs(k,t,M){const C=S.cmp[k]?MD[k](S.cmp[k]):null,T=Math.max(M.T,C?C.T:0);
+[['x',M.l],['v','Kecepatan v (m/s)'],['a','Percepatan a (m/s²)']].forEach(([q,l])=>{const fs=[M[q]].concat(C?[C[q]]:[]);let lo=0,hi=0;fs.forEach(f=>{for(let i=0;i<=60;i++){const y=f(T*i/60);lo=Math.min(lo,y);hi=Math.max(hi,y)}});
+const A=ax($(k+'g'+q),0,T,lo,hi+(hi-lo)*.1,'t (s)',l);if(C)curve(A,C[q],C.T,'#999',1);curve(A,M[q],M.T,'#2a78a8');
+if(t<=M.T){const c=A.c,y=M[q](t);c.fillStyle='#e08a00';c.beginPath();c.arc(A.X(t),A.Y(y),5,0,7);c.fill();const sl=q=='x'?M.v(t):q=='v'?M.a(t):null;if(sl!=null){const d=T*.15;c.strokeStyle='#e08a00';c.lineWidth=1.5;c.beginPath();c.moveTo(A.X(t-d),A.Y(y-sl*d));c.lineTo(A.X(t+d),A.Y(y+sl*d));c.stroke()}}})}
+/* ===== Model fisika ===== */
+const LC={
+m2:{p:[['v','Kecepatan',2,20,1,6,'m/s'],['T','Waktu simulasi',1,20,1,10,'s'],['x0','Posisi awal',-50,100,5,0,'m']]},
+m3:{p:[['v0','Kecepatan awal',0,20,1,2,'m/s'],['a','Percepatan',-5,5,.5,1,'m/s²'],['T','Waktu simulasi',1,10,1,5,'s'],['x0','Posisi awal',-50,100,5,0,'m']],ex:'<label><input type="checkbox" id="m3st" checked onchange="chg(\'m3\')"> Berhenti saat v = 0 (tanpa berbalik)</label>'},
+m4:{p:[['h0','Ketinggian awal (A)',5,30,1,20,'m'],['v0','Kecepatan awal (B)',5,30,1,20,'m/s'],['g','Percepatan gravitasi',1,20,.1,10,'m/s²']],ex:'<label>Simulasi: <select id="m4mode" onchange="chg(\'m4\')"><option value="j">A. Jatuh bebas<option value="u">B. Vertikal ke atas</select></label>'}};
+const MD={
+m2:p=>({T:p.T,l:'Posisi x (m)',x:t=>p.x0+p.v*t,v:()=>p.v,a:()=>0}),
+m3:p=>{const ts=p.v0*p.a<0?-p.v0/p.a:1e9,e=t=>p.st?Math.min(t,ts):t;return{T:p.T,l:'Posisi x (m)',x:t=>p.x0+p.v0*e(t)+.5*p.a*e(t)*e(t),v:t=>p.st&&t>ts?0:p.v0+p.a*t,a:t=>p.st&&t>ts?0:p.a}},
+m4:p=>p.mode=='j'?{T:Math.sqrt(2*p.h0/p.g),l:'Ketinggian y (m)',x:t=>Math.max(0,p.h0-.5*p.g*t*t),v:t=>-p.g*t,a:()=>-p.g}:{T:2*p.v0/p.g,l:'Ketinggian y (m)',x:t=>Math.max(0,p.v0*t-.5*p.g*t*t),v:t=>p.v0-p.g*t,a:()=>-p.g}};
+function P(k){const p={};LC[k].p.forEach(d=>p[d[0]]=+$(k+d[0]).value);if(k=='m3')p.st=$('m3st').checked;if(k=='m4')p.mode=$('m4mode').value;return p}
+function simUI(k){const L=LC[k];return`<div class="g">${L.ex||''}${L.p.map(d=>`<label id="${k}${d[0]}r">${d[1]}: <b id="${k}${d[0]}o">${d[5]}</b> ${d[6]}<br><input type="range" id="${k}${d[0]}" min="${d[2]}" max="${d[3]}" step="${d[4]}" value="${d[5]}" oninput="chg('${k}')"></label>`).join('')}</div>
+<p><button class="p" onclick="play('${k}')">▶ Mulai</button><button class="s" onclick="pause('${k}')">⏸ Jeda</button><button class="s" onclick="jump('${k}')">+1 s</button><button class="s" onclick="rs('${k}')">↺ Reset</button><button class="y" onclick="again('${k}')">⟲ Ulangi</button><button class="s" onclick="cmpS('${k}')">Simpan sbg pembanding</button><button class="s" onclick="cmpC('${k}')">Hapus pembanding</button></p>
+<canvas id="${k}tk" width="800" height="200"></canvas>
+<div class="ind"><div>t = <span id="${k}iT"></span> s</div><div>x = <span id="${k}iX"></span> m</div><div>v = <span id="${k}iV"></span> m/s</div><div>jarak tempuh = <span id="${k}iS"></span> m</div><div>a = <span id="${k}iA"></span> m/s²</div></div><p class="fb" id="${k}inf"></p>
+<div class="g"><canvas id="${k}gx" width="300" height="190"></canvas><canvas id="${k}gv" width="300" height="190"></canvas><canvas id="${k}ga" width="300" height="190"></canvas></div>
+<p><small>Garis jingga pada grafik x-t dan v-t adalah garis singgung: kemiringannya menunjukkan v (pada x-t) dan a (pada v-t). Garis putus-putus abu-abu adalah percobaan pembanding.</small></p>`}
+const sim={m2:{},m3:{},m4:{}};
+function wh(c,x,y,r,a){c.strokeStyle='#222';c.lineWidth=3.5;c.beginPath();c.arc(x,y,r,0,7);c.stroke();c.lineWidth=1.2;for(let i=0;i<4;i++){const b=a+i*Math.PI/4,u=r*Math.cos(b),v=r*Math.sin(b);c.beginPath();c.moveTo(x+u,y+v);c.lineTo(x-u,y-v);c.stroke()}c.fillStyle='#777';c.beginPath();c.arc(x,y,2.5,0,7);c.fill()}
+function ln(c,col,w,pts){c.strokeStyle=col;c.lineWidth=w;c.lineCap='round';c.lineJoin='round';c.beginPath();pts.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.stroke()}
+function veh(c,ty,px,gy,dir,pitch,spd,sc){c.save();c.translate(px,gy);c.scale(dir<0?-sc:sc,sc);const r={motor:13,car:11,bike:15,walk:12}[ty],a=px*dir/(r*sc),hd=(x,y,z)=>{c.fillStyle='#f5c542';c.beginPath();c.arc(x,y,z,0,7);c.fill()};
+if(spd>.5)for(let i=0;i<3;i++)ln(c,'#9bb5a8',2,[[-54,-14-i*14],[-54-Math.min(40,spd*3),-14-i*14]]);
+if(ty!='walk')c.rotate(pitch);
+if(ty=='motor'){wh(c,-24,-13,13,a);wh(c,24,-13,13,a);c.fillStyle='#2a78a8';c.beginPath();c.moveTo(-26,-14);c.lineTo(-18,-30);c.lineTo(2,-30);c.lineTo(10,-24);c.lineTo(20,-27);c.lineTo(24,-14);c.lineTo(8,-14);c.lineTo(0,-19);c.closePath();c.fill();
+ln(c,'#333',3,[[20,-28],[24,-13]]);ln(c,'#333',3,[[16,-38],[21,-29]]);c.fillStyle='#222';c.fillRect(-19,-34,19,5);c.fillStyle='#f5c542';c.beginPath();c.arc(25,-29,3.5,0,7);c.fill();
+ln(c,'#456c4c',6,[[-9,-34],[-3,-52]]);ln(c,'#456c4c',4,[[-3,-50],[16,-39]]);ln(c,'#456c4c',5,[[-9,-33],[4,-25],[6,-14]]);hd(0,-59,6.5)}
+else if(ty=='car'){c.fillStyle='#d8861b';c.fillRect(-46,-32,92,20);c.beginPath();c.moveTo(-26,-32);c.lineTo(-14,-50);c.lineTo(16,-50);c.lineTo(28,-32);c.fill();c.fillStyle='#e0f0f9';c.beginPath();c.moveTo(-20,-34);c.lineTo(-12,-47);c.lineTo(0,-47);c.lineTo(0,-34);c.fill();c.beginPath();c.moveTo(5,-34);c.lineTo(5,-47);c.lineTo(15,-47);c.lineTo(23,-34);c.fill();c.fillStyle='#f5c542';c.fillRect(42,-28,5,5);wh(c,-30,-11,11,a);wh(c,30,-11,11,a)}
+else if(ty=='bike'){wh(c,-28,-15,15,a);wh(c,28,-15,15,a);const qx=Math.cos(a)*7,qy=Math.sin(a)*7;ln(c,'#2a78a8',3,[[-28,-15],[-4,-15],[20,-42],[-12,-40],[-28,-15]]);ln(c,'#2a78a8',3,[[-12,-40],[-4,-15]]);ln(c,'#2a78a8',3,[[20,-42],[28,-15]]);ln(c,'#333',3,[[16,-48],[22,-44]]);
+ln(c,'#456c4c',5,[[-12,-42],[4,-62]]);ln(c,'#456c4c',4,[[4,-60],[19,-46]]);ln(c,'#456c4c',4,[[-12,-41],[-4+qx,-15+qy]]);hd(8,-69,6)}
+else{const s=Math.sin(px*dir/10),w='#456c4c';ln(c,w,6,[[0,-60],[0,-34]]);ln(c,w,5,[[0,-34],[s*14,-17],[s*18,0]]);ln(c,w,5,[[0,-34],[-s*14,-17],[-s*18,0]]);ln(c,w,4,[[0,-58],[-s*12,-44]]);ln(c,w,4,[[0,-58],[s*12,-44]]);hd(0,-68,7)}
+c.restore()}
+function m1dir(c,sd){for(let i=0;i<3;i++){if(c.l[i]>0&&sd<=c.l[i])return Math.sign(c.p[i+1]-c.p[i]);sd-=c.l[i]}return Math.sign(c.p[3]-c.p[2])||1}
+function scene(c,W,gy){const g=c.createLinearGradient(0,0,0,gy);g.addColorStop(0,'#cfe9f7');g.addColorStop(1,'#f6fbff');c.fillStyle=g;c.fillRect(0,0,W,gy);c.fillStyle='#f8dc7a';c.beginPath();c.arc(W-70,36,20,0,7);c.fill();[['#c3dac0',90],['#aecbaa',55]].forEach(([col,h],j)=>{c.fillStyle=col;c.beginPath();c.moveTo(0,gy);for(let x=0;x<=W;x+=20)c.lineTo(x,gy-h*.5-Math.sin(x/90+j*2)*h*.35);c.lineTo(W,gy);c.fill()});if(gy==110){c.fillStyle='#dcebd2';c.fillRect(0,150,W,50)}if(gy!=168)[.14,.5,.86].forEach(f=>{const x=W*f,y=gy;c.strokeStyle='#6b4f2a';c.lineWidth=4;c.beginPath();c.moveTo(x,y);c.quadraticCurveTo(x+6,y-24,x-1,y-46);c.stroke();c.strokeStyle='#3f7a46';c.lineWidth=3;for(let i=0;i<5;i++){const a=-2.8+i*.55;c.beginPath();c.moveTo(x-1,y-46);c.quadraticCurveTo(x-1+Math.cos(a)*14,y-46+Math.sin(a)*14-6,x-1+Math.cos(a)*26,y-46+Math.sin(a)*22+8);c.stroke()}})}
+function track(k,t,p,M){const c=$(k+'tk').getContext('2d'),W=800,H=200;c.clearRect(0,0,W,H);scene(c,W,k=='m4'?180:110);let lo=M.x(0),hi=lo;for(let i=0;i<=100;i++){const x=M.x(M.T*i/100);lo=Math.min(lo,x);hi=Math.max(hi,x)}
+const sp=Math.max(hi-lo,10),st=[1,2,5,10,20,50,100,200,500].find(s=>sp/s<=8)||1000;c.fillStyle='#444';c.strokeStyle='#888';c.font='12px sans-serif';c.lineWidth=1;
+if(k=='m4'){const Y=v=>180-v/(hi*1.1+1)*165;c.fillStyle='#bfd8b8';c.fillRect(0,180,W,20);c.fillStyle='#444';for(let v=0;v<=hi;v+=st){c.beginPath();c.moveTo(60,Y(v));c.lineTo(75,Y(v));c.stroke();c.fillText(v+' m',18,Y(v)+4)}c.font='28px serif';c.fillText(p.mode=='j'?'🥥':'⚽',W/2-14,Y(M.x(t))+4)}
+else{lo-=sp*.08;hi+=sp*.08;const X=v=>30+(v-lo)/(hi-lo)*(W-60);c.fillStyle='#a9b4ae';c.fillRect(0,110,W,40);c.strokeStyle='#fff';c.setLineDash([14,10]);c.beginPath();c.moveTo(0,130);c.lineTo(W,130);c.stroke();c.setLineDash([]);c.strokeStyle='#555';c.fillStyle='#444';
+for(let v=Math.ceil(lo/st)*st;v<=hi;v+=st){c.beginPath();c.moveTo(X(v),150);c.lineTo(X(v),158);c.stroke();c.fillText(v,X(v)-8,172)}c.fillText('x (m)',W-45,190);c.strokeStyle=c.fillStyle='#c0392b';c.lineWidth=2;c.beginPath();c.moveTo(X(p.x0),104);c.lineTo(X(p.x0),158);c.stroke();c.fillText('🚩 awal',X(p.x0)-12,192);
+const vx=X(M.x(t)),vv=M.v(t),o=sim[k],dir=Math.abs(vv)>.001?Math.sign(vv):t==0?(Math.sign(M.a(0))||1):(o.dir||1);o.dir=dir;c.fillStyle='#222';c.font='14px sans-serif';c.fillText(vv>.001?'v →':vv<-.001?'← v':'v = 0',vx-14,62);veh(c,'motor',vx,140,dir,-Math.max(-.12,Math.min(.12,M.a(t)*dir*.02)),Math.abs(vv),1)}}
+function upd(k){const o=sim[k],p=P(k),M=MD[k](p),t=o.t,f=n=>(+n).toFixed(2);track(k,t,p,M);graphs(k,t,M);
+$(k+'iT').textContent=f(t);$(k+'iX').textContent=f(M.x(t));$(k+'iV').textContent=f(M.v(t));$(k+'iS').textContent=f(o.s);$(k+'iA').textContent=f(M.a(t));let m='';
+if(k=='m4')m=p.mode=='u'?`Ketinggian maksimum = v₀²/2g = ${f(p.v0*p.v0/2/p.g)} m. Waktu ke titik tertinggi = v₀/g = ${f(p.v0/p.g)} s. Waktu di udara = ${f(M.T)} s.`:`Waktu jatuh = ${f(M.T)} s. Kecepatan tiba = ${f(p.g*M.T)} m/s (ke bawah).`;
+if(k=='m3')m=p.a==0?'a = 0: geraknya sama dengan GLB.':p.v0*p.a<0?`Diperlambat: arah a berlawanan dengan v. v = 0 saat t = ${f(-p.v0/p.a)} s${p.st?', lalu kendaraan berhenti.':'; setelah itu kendaraan berbalik arah (x berkurang).'}`:'Dipercepat: arah a searah dengan v.';$(k+'inf').textContent=m}
+function step(k,n){const o=sim[k];if(!o.run)return;const M=MD[k](P(k)),t1=Math.min(M.T,o.t+Math.min(.05,(n-o.l)/1000));o.l=n;o.s+=Math.abs(M.v((o.t+t1)/2))*(t1-o.t);o.t=t1;upd(k);if(t1>=M.T)o.run=0;else o.raf=requestAnimationFrame(x=>step(k,x))}
+function play(k){const o=sim[k];if(o.run)return;if(o.t>=MD[k](P(k)).T)rs(k);o.run=1;o.l=performance.now();o.raf=requestAnimationFrame(x=>step(k,x))}
+function pause(k){sim[k].run=0;cancelAnimationFrame(sim[k].raf)}
+function rs(k){pause(k);sim[k].t=0;sim[k].s=0;upd(k)}
+function again(k){rs(k);play(k)}
+function jump(k){pause(k);const o=sim[k],M=MD[k](P(k)),t1=Math.min(M.T,Math.floor(o.t+1e-9)+1);o.s+=Math.abs(M.v((o.t+t1)/2))*(t1-o.t);o.t=t1;upd(k)}
+function chg(k){const p=P(k);LC[k].p.forEach(d=>$(k+d[0]+'o').textContent=p[d[0]]);if(k=='m4'){$('m4h0r').style.display=p.mode=='j'?'':'none';$('m4v0r').style.display=p.mode=='u'?'':'none'}rs(k)}
+function cmpS(k){S.cmp[k]=P(k);sv();upd(k)}function cmpC(k){delete S.cmp[k];sv();upd(k)}
+/* ===== Simulasi Materi 1 ===== */
+const SC=[['Berangkat dari rumah menuju sekolah','🏍️',[0,300,200,500],60],['Berkendara menuju pasar','🚗',[0,400,300,600],60],['Bersepeda di jalan sekitar persawahan','🚲',[0,100,60,200],40],['Berjalan dari rumah menuju tempat olahraga','🚶',[0,40,30,70],60]],o1={u:0,run:0,raf:0,l:0};
+function sim1(){return`<p>Skenario: <select id="m1sc" onchange="sc1()">${SC.map((s,i)=>`<option value="${i}">${s[0]}`).join('')}</select></p><div class="g">${['A (awal)','B','C','D (akhir)'].map((n,i)=>`<label>Posisi ${n} (m)<br><input type="number" id="m1p${i}" step="10" min="-1000" max="2000" oninput="r1()"></label>`).join('')}<label>Waktu tempuh (s)<br><input type="number" id="m1T" min="1" oninput="r1()"></label></div>
+<p>Kendaraan bergerak A → B → C → D dengan laju tetap. Ubah koordinat untuk menentukan arah perjalanan; B dan C adalah titik pemberhentian atau berbalik arah. Simulasi berjalan dalam waktu nyata: 1 sekon di layar = 1 sekon pada data, sehingga laju kendaraan sama dengan kelajuan yang dihitung. Kamu boleh mempercepat putaran, tetapi angka waktu di panel tetap menunjukkan waktu simulasi.</p><p>Kecepatan putar: <select id="m1sp"><option value="1">1× (waktu nyata)<option value="2">2×<option value="5">5×<option value="10">10×</select></p>
+<p><button class="p" onclick="p1()">▶ Mulai</button><button class="s" onclick="q1()">⏸ Jeda</button><button class="s" onclick="r1()">↺ Reset</button></p><canvas id="m1tk" width="800" height="220"></canvas>
+<div class="ind"><div>Waktu: <span id="m1iT">0</span> s</div><div>Jarak ditempuh: <span id="m1iS">0</span> m</div><div>Perpindahan: <span id="m1iD">0</span> m</div><div>Kelajuan rata-rata: <span id="m1iV">–</span></div><div>Kecepatan rata-rata: <span id="m1iW">–</span></div></div>
+<p class="fb">Garis biru, jingga, dan hijau = lintasan (menentukan jarak). Garis merah putus-putus = perpindahan (A langsung ke D).</p>`}
+function m1pos(c,sd){for(let i=0;i<3;i++){if(sd<=c.l[i])return c.p[i]+Math.sign(c.p[i+1]-c.p[i])*sd;sd-=c.l[i]}return c.p[3]}
+function d1(){const c=m1c(),x=$('m1tk').getContext('2d'),W=800,H=220,lo=Math.min(...c.p)-60,hi=Math.max(...c.p)+60,X=v=>30+(v-lo)/(hi-lo)*(W-60),sd=c.s*o1.u/c.T,pos=m1pos(c,sd);x.clearRect(0,0,W,H);scene(x,W,168);
+x.strokeStyle='#555';x.lineWidth=2;x.beginPath();x.moveTo(20,170);x.lineTo(W-10,170);x.stroke();const st=[10,20,50,100,200,500].find(s=>(hi-lo)/s<=12)||1000;x.fillStyle='#444';x.font='12px sans-serif';x.lineWidth=1;
+for(let v=Math.ceil(lo/st)*st;v<=hi;v+=st){x.beginPath();x.moveTo(X(v),165);x.lineTo(X(v),175);x.stroke();x.fillText(v,X(v)-8,190)}x.fillText('x (m)',W-45,208);
+const cs=['#2a78a8','#d8861b','#46704c'];for(let i=0;i<3;i++){const y=104+i*17,a=X(c.p[i]),b=X(c.p[i+1]),d=Math.sign(b-a);x.strokeStyle=x.fillStyle=cs[i];x.lineWidth=3;x.beginPath();x.moveTo(a,y);x.lineTo(b,y);x.stroke();x.beginPath();x.moveTo(b,y);x.lineTo(b-d*9,y-5);x.lineTo(b-d*9,y+5);x.fill();x.font='12px sans-serif';x.fillText('lintasan '+(i+1),Math.min(a,b)+4,y-5)}
+x.strokeStyle=x.fillStyle='#c0392b';x.setLineDash([8,5]);x.beginPath();x.moveTo(X(c.p[0]),152);x.lineTo(X(c.p[3]),152);x.stroke();x.setLineDash([]);x.fillText('perpindahan',Math.min(X(c.p[0]),X(c.p[3]))+4,148);
+['A','B','C','D'].forEach((n,i)=>{x.fillStyle='#f5c542';x.beginPath();x.arc(X(c.p[i]),170,6,0,7);x.fill();x.fillStyle='#222';x.font='bold 13px sans-serif';x.fillText(n,X(c.p[i])-4,163)});
+veh(x,['motor','car','bike','walk'][+$('m1sc').value],X(pos),88,m1dir(c,sd),0,o1.u>0&&o1.u<c.T?25:0,.8);
+$('m1iT').textContent=o1.u.toFixed(1);$('m1iS').textContent=sd.toFixed(0);$('m1iD').textContent=(pos-c.p[0]).toFixed(0);const fin=o1.u>=c.T;$('m1iV').textContent=fin?c.sp.toFixed(2)+' m/s':'–';$('m1iW').textContent=fin?c.vl.toFixed(2)+' m/s':'–'}
+function sc1(){const s=SC[+$('m1sc').value];s[2].forEach((v,i)=>$('m1p'+i).value=v);$('m1T').value=s[3];r1()}
+function r1(){q1();o1.u=0;d1()}function q1(){o1.run=0;cancelAnimationFrame(o1.raf)}
+function p1(){if(o1.run)return;if(o1.u>=m1c().T)o1.u=0;o1.run=1;o1.l=performance.now();o1.raf=requestAnimationFrame(f1)}
+function f1(n){if(!o1.run)return;const T=m1c().T;o1.u=Math.min(T,o1.u+Math.min(.05,(n-o1.l)/1000)*(+$('m1sp').value));o1.l=n;d1();if(o1.u<T)o1.raf=requestAnimationFrame(f1);else o1.run=0}
+/* ===== Halaman materi ===== */
+const prac=(q,i)=>`<div style="margin:10px 0"><p><b>${q.q}</b></p>${q.o.map((o,j)=>`<label class="opt" id="pq${i}_${j}" onclick="pr(${i},${j})">${'ABCDE'[j]}. ${o}</label>`).join('')}<div class="fb" id="pf${i}"></div></div>`;
+function pr(i,j){const q=Q[i];q.o.forEach((_,x)=>$(`pq${i}_${x}`).className='opt');$(`pq${i}_${j}`).className='opt '+(j==q.a?'ok':'no');$('pf'+i).innerHTML=j==q.a?'✅ Tepat! '+q.e:'❌ Belum tepat. Baca lagi materi dan coba pilihan lain.'}
+function page(k){const d=CT[k];return`<h2>${d.t}</h2>
+<div class="c"><h3>Apersepsi</h3><p>${d.ap}</p><ul>${d.pq.map(x=>`<li>${x}</li>`).join('')}</ul></div>
+<div class="c"><h3>Tujuan pembelajaran</h3><p>${d.g}</p></div>
+<div class="c"><h3>Materi, rumus, dan contoh penerapan</h3>${d.m}</div>
+<div class="c"><h3>Simulasi interaktif</h3>${k=='m1'?sim1():simUI(k)}</div>
+<div class="c"><h3>Percobaan virtual dan tabel pengamatan</h3><p>${d.pc}</p>${tbls(k)}</div>
+<div class="c"><h3>Pertanyaan analisis</h3>${d.an.map((q,i)=>`<p>${i+1}. ${q}</p>${ta(k+'_q'+i)}`).join('')}</div>
+<div class="c"><h3>Kesimpulan</h3><p>${d.kp}</p>${ta(k+'_kes')}</div>
+<div class="c"><h3>Contoh soal dan pembahasan</h3>${d.ex}</div>
+<div class="c"><h3>Latihan soal kontekstual</h3>${Q.map((q,i)=>q.m==k?prac(q,i):'').join('')}</div>
+<div class="c"><h3>Umpan balik dan refleksi singkat</h3><p>Seberapa paham kamu dengan materi ini? <select id="${k}_lv" onchange="sa(this)">${LV}</select></p><button class="p" onclick="fin('${k}')">Tandai materi selesai</button> <span id="${k}_fin">${S.done[k]?'✅ Selesai':''}</span></div>
+<p>${k!='m1'?`<button class="s" onclick="go('${'m'+(+k[1]-1)}')">◀ Materi sebelumnya</button>`:''} <button class="s" onclick="go('${k=='m4'?'ev':'m'+(+k[1]+1)}')">${k=='m4'?'Ke Evaluasi Akhir':'Materi berikutnya'} ▶</button></p>`}
+function fin(k){S.done[k]=1;sv();prog();$(k+'_fin').textContent='✅ Selesai'}
+/* ===== Evaluasi ===== */
+const evS=()=>{const b=Q.filter((q,i)=>S.ev.a[i]===q.a).length;return{b,n:Q.length,sc:Math.round(b/Q.length*100)}};
+function evR(){const e=S.ev,el=$('s-ev');
+if(e.done){const r=evS(),bad=[...new Set(Q.filter((q,i)=>e.a[i]!==q.a).map(q=>MN[q.m]))];
+el.innerHTML=`<h2>Hasil Evaluasi</h2><div class="c"><h3>${E(S.name)} · ${E(S.kls)}</h3><p style="font-size:2rem;margin:0"><b>${r.sc}</b> / 100</p><p>Benar ${r.b} dari ${r.n} soal (${r.sc}%). Nilai = (${r.b} / ${r.n}) × 100.</p><p>${bad.length?'Pelajari kembali: <b>'+bad.join(', ')+'</b>.':'Semua materi sudah kamu kuasai.'}</p><button class="p" onclick="evRe()">Ulangi evaluasi</button></div>`+Q.map((q,i)=>`<div class="c"><p><b>${i+1}. ${q.q}</b></p><p>Jawabanmu: ${e.a[i]==null?'(kosong)':'ABCDE'[e.a[i]]+'. '+q.o[e.a[i]]} ${e.a[i]===q.a?'✅':'❌'}</p><p>Jawaban benar: ${'ABCDE'[q.a]}. ${q.o[q.a]}</p><p>Pembahasan: ${q.e}</p></div>`).join('');return}
+const i=e.i,q=Q[i];el.innerHTML=`<h2>Evaluasi Akhir</h2><div class="c"><p>${Q.map((_,j)=>`<button class="${j==i?'p':'s'}" onclick="evG(${j})">${j+1}${e.a[j]!=null?'●':''}</button>`).join('')}</p><p><b>Soal ${i+1} dari ${Q.length}.</b> ${q.q}</p>${q.o.map((o,j)=>`<label class="opt ${e.a[i]===j?'sel':''}" onclick="evP(${j})">${'ABCDE'[j]}. ${o}</label>`).join('')}<p><button class="s" onclick="evG(${i-1})" ${i?'':'disabled'}>◀ Sebelumnya</button><button class="s" onclick="evG(${i+1})" ${i<Q.length-1?'':'disabled'}>Berikutnya ▶</button> <button class="y" onclick="evF()">Selesai</button></p></div>`}
+function evG(j){S.ev.i=j;sv();evR()}function evP(j){S.ev.a[S.ev.i]=j;sv();evR()}
+function evF(){const n=Q.filter((_,i)=>S.ev.a[i]==null).length;if(!confirm(`Akhiri evaluasi?${n?' Masih ada '+n+' soal belum dijawab.':''} Setelah selesai, nilai dan pembahasan ditampilkan.`))return;S.ev.done=1;S.done.ev=1;sv();prog();evR()}
+function evRe(){S.ev={i:0,a:[],done:0};delete S.done.ev;sv();prog();evR()}
+/* ===== Refleksi, peta, laporan ===== */
+const RQ=['Materi apa yang paling mudah kamu pahami?','Materi apa yang masih sulit kamu pahami?','Apakah simulasi membantu kamu memahami konsep gerak lurus?','Apakah kamu mampu mengolah data hasil percobaan?','Apa hal baru yang kamu pelajari?','Bagaimana konsep gerak lurus dapat ditemukan dalam kehidupan sehari-hari di lingkunganmu?'];
+$('s-ref').innerHTML=`<h2>Refleksi Pembelajaran</h2><div class="c">${RQ.map((q,i)=>`<p>${i+1}. ${q}</p>${ta('r_'+i)}`).join('')}<p>Tingkat pemahamanmu: <select id="r_lv" onchange="sa(this)">${LV}</select></p><button class="p" onclick="S.done.ref=1;sv();prog();$('r_ok').textContent='✅ Refleksi tersimpan'">Simpan hasil refleksi</button> <span id="r_ok">${S.done.ref?'✅ Refleksi tersimpan':''}</span></div>`;
+function mapR(){$('s-map').innerHTML=`<h2>Peta Pembelajaran</h2><p>Ikuti urutan berikut. Setiap materi berisi apersepsi, simulasi, percobaan, analisis, kesimpulan, contoh soal, dan latihan.</p><div class="g">${[['m1','Materi 1: Konsep Dasar Gerak'],['m2','Materi 2: GLB'],['m3','Materi 3: GLBB'],['m4','Materi 4: Gerak Vertikal'],['ev','Evaluasi Akhir'],['ref','Refleksi Pembelajaran']].map(x=>`<div class="c"><h3>${x[1]}</h3><p>${S.done[x[0]]?'✅ Selesai':'Belum selesai'}</p><button class="p" onclick="go('${x[0]}')">Buka</button></div>`).join('')}</div><button class="s" onclick="rst()">Ulangi pembelajaran (hapus semua data)</button>`}
+function rst(){if(confirm('Semua jawaban dan progres akan dihapus. Lanjutkan?')){try{localStorage.removeItem('lgf')}catch(e){}location.reload()}}
+function rep(){const r=evS();let h=`<h2>Laporan Hasil Praktikum Gerak Lurus</h2><p class="nb"><button class="p" onclick="print()">Cetak / Simpan PDF</button></p><div class="c"><p><b>Nama:</b> ${E(S.name)||'-'} &nbsp; <b>Kelas:</b> ${E(S.kls)||'-'}</p><p><b>Nilai evaluasi:</b> ${S.ev.done?r.sc+' (benar '+r.b+' dari '+r.n+')':'belum dikerjakan'}</p></div>`;
+['m1','m2','m3','m4'].forEach(k=>{h+=`<div class="c"><h3>${CT[k].t}</h3>`+TB[k].map(s=>`<h4>${s.title}</h4><table><tr><th>${s.rl}</th>${s.heads.map(x=>`<th>${x}</th>`).join('')}</tr>${s.rows.map((r,i)=>`<tr><td>${s.lab?s.lab[i]:r}</td>${s.heads.map((x,c)=>`<td>${VA(cell(k,s.id,i,c))||'-'}</td>`).join('')}</tr>`).join('')}</table>`).join('')+CT[k].an.map((q,i)=>`<p><b>${i+1}. ${q}</b><br>${VA(k+'_q'+i)||'-'}</p>`).join('')+`<p><b>Kesimpulan:</b> ${VA(k+'_kes')||'-'}</p></div>`});$('s-rep').innerHTML=h}
+/* ===== Navigasi dan mulai ===== */
+function prog(){$('pb').firstChild.style.width=['m1','m2','m3','m4','ev','ref'].filter(k=>S.done[k]).length/6*100+'%'}
+function go(id){['m2','m3','m4'].forEach(pause);q1();document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id=='s-'+id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.k==id));
+if(id=='map')mapR();if(id=='ev')evR();if(id=='rep')rep();if(id=='m1')d1();if(LC[id])upd(id);scrollTo(0,0)}
+function start(){S.name=$('nm').value.trim();S.kls=$('kl').value.trim();if(!S.name){alert('Isi nama kamu dulu, ya.');return}sv();who();go('map')}
+function who(){$('who').textContent=S.name?'· '+S.name+' · '+S.kls:''}
+$('nav').innerHTML=NAV.map(n=>`<button data-k="${n[0]}" onclick="go('${n[0]}')">${n[1]}</button>`).join('');
+['m1','m2','m3','m4'].forEach(k=>{$('s-'+k).innerHTML=page(k);$('s-'+k).classList.add('mat')});
+document.querySelectorAll('select[id$="_lv"]').forEach(e=>{if(S.a[e.id])e.value=S.a[e.id]});
+$('nm').value=S.name;$('kl').value=S.kls;who();prog();
+$('m1sc').value=0;sc1();['m2','m3','m4'].forEach(k=>{sim[k]={t:0,s:0,run:0,raf:0,l:0};chg(k)});
+document.querySelector('nav button').classList.add('on');
+</script></body></html>
